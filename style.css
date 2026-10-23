@@ -1,11 +1,134 @@
-body { background-color: #121212; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-.container { max-width: 600px; margin: 0 auto; }
-h1 { text-align: center; color: #e0e0e0; }
-.card { background-color: #1e1e1e; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #333; }
-.progress-bar { background-color: #333; height: 20px; border-radius: 10px; margin: 15px 0; overflow: hidden; }
-.progress { background-color: #fff; height: 100%; width: 0%; transition: width 0.5s; }
-button { background-color: #2a2a2a; color: #fff; border: 1px solid #555; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-button:hover { background-color: #444; }
-textarea { width: 100%; height: 80px; background-color: #2a2a2a; color: #fff; border: 1px solid #444; border-radius: 5px; padding: 10px; margin-bottom: 10px; box-sizing: border-box; }
-ul { list-style-type: none; padding: 0; }
-li { background-color: #2a2a2a; padding: 10px; margin-top: 10px; border-radius: 5px; }
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --accent-orange: #ff7a00;
+    --accent-white: #ffffff;
+    --success-green: #2ecc71;
+    --danger-red: #e74c3c;
+    --border-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease; /* Плавные анимации для всего */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- БОКОВОЕ МЕНЮ --- */
+.sidebar {
+    width: 250px;
+    background-color: #151515;
+    border-right: 1px solid var(--border-color);
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-white);
+    margin-bottom: 40px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-orange);
+    padding-bottom: 10px;
+}
+
+.nav-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.nav-btn:hover {
+    background-color: var(--card-bg);
+    color: var(--accent-orange);
+    border-color: var(--accent-orange);
+    transform: translateX(5px); /* Анимация сдвига */
+}
+
+/* --- КОНТЕНТ --- */
+.main-content {
+    margin-left: 250px;
+    padding: 40px;
+    width: calc(100% - 250px);
+}
+
+h1 {
+    color: var(--accent-white);
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+/* --- КНОПКИ --- */
+.btn-primary {
+    background-color: var(--accent-orange);
+    color: var(--accent-white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: #e66a00;
+    transform: scale(1.05); /* Анимация увеличения */
+}
+
+/* --- ПРОГРЕСС-БАР --- */
+.progress-container {
+    background-color: var(--border-color);
+    height: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: var(--accent-orange);
+    height: 100%;
+    width: 0%;
+    transition: width 0.8s ease-in-out; /* Плавное заполнение */
+}
+
+/* Водяной знак */
+.watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.03;
+    font-size: 300px;
+    pointer-events: none;
+    z-index: -1;
+}
