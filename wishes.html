@@ -11,9 +11,7 @@
     <div class="watermark">🏛️</div>
 
     <div class="sidebar">
-        <div class="logo">
-    <span>Architect</span> <span style="color: var(--accent-orange);">Tracker</span>
-</div>
+        <div class="logo">Architect Tracker</div>
         <a href="index.html" class="nav-btn">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn">2. Планы</a>
@@ -31,7 +29,6 @@
         </div>
         
         <div style="max-width: 800px; margin: 0 auto;">
-            <!-- Форма добавления -->
             <div class="card" style="margin-bottom: 30px; text-align: left;">
                 <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая хотелка</h2>
                 <input type="text" id="wish-title" class="input-field" placeholder="Чего хочется? (например, Новый iPhone)">
@@ -49,7 +46,6 @@
                 <button class="btn-primary" onclick="addWish()">Добавить</button>
             </div>
 
-            <!-- Фильтры -->
             <div style="display: flex; gap: 10px; margin-bottom: 20px;">
                 <button class="btn-primary" style="background: #333;" onclick="filterWishes('Все')">Все</button>
                 <button class="btn-primary" style="background: #333;" onclick="filterWishes('На жизнь')">На жизнь</button>
@@ -57,7 +53,6 @@
                 <button class="btn-primary" style="background: #333;" onclick="filterWishes('На месяц')">На месяц</button>
             </div>
 
-            <!-- Список хотелок -->
             <div id="wishes-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
         </div>
     </div>
