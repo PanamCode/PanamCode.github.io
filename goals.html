@@ -24,14 +24,15 @@
     </div>
 
     <div class="main-content">
-        <div class="header-center" style="margin-bottom: 30px; margin-top: 10px;">
-            <h1 style="font-size: 36px;">Мои цели</h1>
+        <div class="header-center">
+            <h1>Мои цели</h1>
         </div>
         
-        <div style="text-align: center; margin-bottom: 30px;">
+        <div style="max-width: 600px; margin: 0 auto 30px auto;">
             <button class="btn-primary" onclick="toggleForm()">+ Добавить новую цель</button>
         </div>
 
+        <!-- Красивая форма добавления -->
         <div id="goal-form" class="card" style="display: none; max-width: 600px; margin: 0 auto 30px auto; text-align: left;">
             <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая цель</h2>
             <label style="color: var(--text-muted); font-size: 14px;">Название (например, Porsche Panamera)</label>
@@ -43,13 +44,23 @@
             <label style="color: var(--text-muted); font-size: 14px;">Ссылка на картинку (необязательно)</label>
             <input type="text" id="goal-image" class="input-field">
             
-            <div style="display: flex; gap: 15px; margin-top: 25px;">
-                <button class="btn-primary" onclick="saveGoal()" style="flex: 1;">Сохранить</button>
-                <button class="btn-primary" onclick="toggleForm()" style="flex: 1; background-color: #333; border: 1px solid #444;">Отмена</button>
+            <div style="margin-top: 20px;">
+                <button class="btn-primary" onclick="saveGoal()">Сохранить</button>
+                <button class="btn-primary" style="background-color: #444;" onclick="toggleForm()">Отмена</button>
             </div>
         </div>
         
-        <div id="goals-list" style="display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto;"></div>
+        <div id="goals-list"></div>
+    </div>
+
+    <!-- Модальное окно для подтверждения удаления -->
+    <div id="delete-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="card" style="max-width: 400px; text-align: center;">
+            <h2 style="color: #e74c3c; margin-bottom: 15px;">Удалить цель?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Ты уверен, что хочешь удалить эту цель? Это действие нельзя отменить.</p>
+            <button class="btn-primary" style="background-color: #e74c3c; border-color: #fff;" onclick="confirmDelete()">Да, удалить</button>
+            <button class="btn-primary" style="background-color: #444;" onclick="closeModal()">Отмена</button>
+        </div>
     </div>
 
     <script src="goals.js"></script>
