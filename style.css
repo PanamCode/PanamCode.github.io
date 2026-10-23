@@ -17,6 +17,16 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     width: 250px; background-color: #151515; border-right: 1px solid var(--border-color);
     padding: 20px; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10;
 }
+.logo { 
+    font-size: 16px; /* Уменьшили шрифт, чтобы влезло */
+    font-weight: bold; 
+    color: #fff; 
+    margin-bottom: 30px; 
+    text-align: center; 
+    border-bottom: 2px solid var(--accent-orange); /* Вернули полоску */
+    padding-bottom: 10px; 
+    letter-spacing: 1px; /* Чуть разрядили буквы для стиля */
+}
 .logo { font-size: 20px; font-weight: bold; color: #fff; margin-bottom: 30px; text-align: center; border-bottom: 2px solid var(--accent-orange); padding-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .nav-btn {
     display: block; width: 100%; padding: 12px; background: none; border: 1px solid transparent;
