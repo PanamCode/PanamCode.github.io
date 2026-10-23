@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планы | Architect Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="watermark">🏛️</div>
+
+    <div class="sidebar">
+        <div class="logo">Architect Tracker</div>
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="goals.html" class="nav-btn">1. Цели</a>
+        <a href="plans.html" class="nav-btn active">2. Планы</a>
+        <a href="#" class="nav-btn">3. Хотелки</a>
+        <a href="#" class="nav-btn">4. Таймер</a>
+        <a href="notes.html" class="nav-btn">5. Заметки</a>
+        <a href="#" class="nav-btn">6. Календарь</a>
+        <a href="#" class="nav-btn">7. Привычки</a>
+        <a href="#" class="nav-btn">8. Идеи</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header-center">
+            <h1>Мои планы</h1>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <!-- Форма добавления -->
+            <div class="card" style="margin-bottom: 30px; text-align: left;">
+                <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новый план</h2>
+                <input type="text" id="plan-text" class="input-field" placeholder="Что нужно сделать?">
+                
+                <div style="display: flex; gap: 15px;">
+                    <select id="plan-type" class="input-field" style="flex: 1;">
+                        <option value="День">На день</option>
+                        <option value="Месяц">На месяц</option>
+                        <option value="Год">На год</option>
+                    </select>
+                    <input type="date" id="plan-date" class="input-field" style="flex: 1;">
+                    <button class="btn-primary" onclick="addPlan()" style="flex: 1;">Добавить</button>
+                </div>
+            </div>
+
+            <!-- Фильтры -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button class="btn-primary" style="background: #333;" onclick="filterPlans('Все')">Все</button>
+                <button class="btn-primary" style="background: #333;" onclick="filterPlans('День')">День</button>
+                <button class="btn-primary" style="background: #333;" onclick="filterPlans('Месяц')">Месяц</button>
+                <button class="btn-primary" style="background: #333;" onclick="filterPlans('Год')">Год</button>
+            </div>
+
+            <!-- Список планов -->
+            <div id="plans-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
+        </div>
+    </div>
+
+    <script src="plans.js"></script>
+</body>
+</html>
