@@ -13,7 +13,7 @@
     <div class="sidebar">
         <div class="logo">Architect Tracker</div>
         <a href="index.html" class="nav-btn">Главная</a>
-        <a href="goals.html" class="nav-btn">1. Цели</a>
+        <a href="goals.html" class="nav-btn active">1. Цели</a>
         <a href="#" class="nav-btn">2. Планы</a>
         <a href="#" class="nav-btn">3. Хотелки</a>
         <a href="#" class="nav-btn">4. Таймер</a>
@@ -24,14 +24,34 @@
     </div>
 
     <div class="main-content">
-        <h1 style="text-align: center; font-size: 36px; margin-bottom: 30px;">Мои цели</h1>
-        
-        <div style="text-align: center; margin-bottom: 40px;">
-            <button class="btn-primary" onclick="addGoal()">+ Добавить новую цель</button>
+        <div class="header-center" style="margin-bottom: 30px; margin-top: 10px;">
+            <h1 style="font-size: 36px;">Мои цели</h1>
         </div>
         
-        <div id="goals-list" style="display: flex; flex-direction: column; gap: 20px;">
-            <!-- Сюда будут добавляться цели -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <button class="btn-primary" onclick="toggleForm()">+ Добавить новую цель</button>
+        </div>
+
+        <!-- Красивая форма добавления -->
+        <div id="goal-form" class="card" style="display: none; max-width: 600px; margin: 0 auto 30px auto; text-align: left;">
+            <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая цель</h2>
+            <label style="color: var(--text-muted); font-size: 14px;">Название (например, Porsche Panamera)</label>
+            <input type="text" id="goal-name" class="input-field">
+            
+            <label style="color: var(--text-muted); font-size: 14px;">Необходимая сумма (₽)</label>
+            <input type="number" id="goal-amount" class="input-field">
+            
+            <label style="color: var(--text-muted); font-size: 14px;">Ссылка на картинку (необязательно)</label>
+            <input type="text" id="goal-image" class="input-field">
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn-primary" onclick="saveGoal()">Сохранить</button>
+                <button class="btn-primary" style="background-color: #333;" onclick="toggleForm()">Отмена</button>
+            </div>
+        </div>
+        
+        <div id="goals-list" style="display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto;">
+            <!-- Сюда добавляются цели -->
         </div>
     </div>
 
