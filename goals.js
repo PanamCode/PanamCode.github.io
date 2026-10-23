@@ -28,7 +28,6 @@ function saveGoal() {
 
     localStorage.setItem('architect_goals', JSON.stringify(goals));
     
-    // Очищаем форму и скрываем её
     document.getElementById('goal-name').value = '';
     document.getElementById('goal-amount').value = '';
     document.getElementById('goal-image').value = '';
@@ -84,7 +83,7 @@ function renderGoals() {
 
         let cardHTML = `
             <div class="card" style="display: flex; gap: 20px; align-items: center; position: relative;">
-                ${goal.image ? `<img src="${goal.image}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">` : '<div style="width: 100px; height: 100px; background: #333; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 30px;">🎯</div>'}
+                ${goal.image ? `<img src="${goal.image}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'">` : '<div style="width: 100px; height: 100px; background: #333; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 30px;">🎯</div>'}
                 
                 <div style="flex-grow: 1;">
                     <h2 style="margin-bottom: 10px; font-size: 20px;">${goal.name}</h2>
