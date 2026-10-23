@@ -10,25 +10,52 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
 body { background-color: var(--bg-color); color: var(--text-main); display: flex; min-height: 100vh; }
 
+/* --- БОКОВОЕ МЕНЮ --- */
 .sidebar {
     width: 250px; background-color: #151515; border-right: 1px solid var(--border-color);
     padding: 20px; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10;
 }
-
 .logo { font-size: 24px; font-weight: bold; color: #fff; margin-bottom: 30px; text-align: center; border-bottom: 2px solid var(--accent-orange); padding-bottom: 10px; }
-
 .nav-btn {
     display: block; width: 100%; padding: 12px; background: none; border: 1px solid transparent;
-    color: var(--text-muted); text-align: left; font-size: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; text-decoration: none;
+    color: var(--text-muted); text-align: left; font-size: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; text-decoration: none; transition: 0.3s;
 }
-
 .nav-btn:hover { background-color: var(--card-bg); color: var(--accent-orange); border-color: var(--accent-orange); }
 
+/* --- КОНТЕНТ --- */
 .main-content { margin-left: 250px; padding: 40px; width: calc(100% - 250px); min-height: 100vh; }
-h1 { color: #fff; margin-bottom: 20px; }
-.card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; }
 
-.btn-primary { background-color: var(--accent-orange); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; }
-.btn-primary:hover { background-color: #e66a00; }
+/* Заголовок по центру */
+.header-center { text-align: center; margin-bottom: 50px; margin-top: 20px; }
+.header-center h1 { font-size: 42px; color: #fff; margin-bottom: 10px; }
+.subtitle { color: var(--text-muted); font-size: 18px; }
 
+/* Сетка для 8 пунктов */
+.grid-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto; /* Центрирование сетки */
+}
+
+/* Карточки пунктов */
+.grid-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+}
+.grid-card:hover {
+    border-color: var(--accent-orange);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.1);
+}
+.grid-card h2 { color: var(--accent-orange); margin-bottom: 10px; font-size: 22px; }
+.grid-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
+
+/* Водяной знак */
 .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; }
