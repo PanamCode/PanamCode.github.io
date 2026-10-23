@@ -59,3 +59,20 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
 
 /* Водяной знак */
 .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; }
+/* Стили для полей ввода */
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 15px;
+}
+.input-field:focus {
+    outline: none;
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 5px rgba(255, 122, 0, 0.3);
+}
