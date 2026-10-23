@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ Architect Tracker</h1>
+        
+        <div class="card">
+            <h2>Цель: Porsche Panamera</h2>
+            <p>Стоимость: 8 500 000 ₽</p>
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar"></div>
+            </div>
+            <p id="progress-text">Накоплено: 0 ₽ (0%)</p>
+            <button onclick="addMoney()">+ Пополнить копилку</button>
+        </div>
 
+        <div class="card">
+            <h2>📝 Мои заметки и планы</h2>
+            <textarea id="note-input" placeholder="Напиши свою гениальную мысль..."></textarea>
+            <button onclick="saveNote()">Сохранить</button>
+            <ul id="notes-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
