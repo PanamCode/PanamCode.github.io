@@ -18,7 +18,7 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     padding: 20px; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10;
 }
 .logo {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #fff;
     margin-bottom: 30px;
@@ -30,7 +30,6 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     white-space: nowrap;
 }
 }
-.logo { font-size: 20px; font-weight: bold; color: #fff; margin-bottom: 30px; text-align: center; border-bottom: 2px solid var(--accent-orange); padding-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .nav-btn {
     display: block; width: 100%; padding: 12px; background: none; border: 1px solid transparent;
     color: var(--text-muted); text-align: left; font-size: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; text-decoration: none; transition: 0.3s;
