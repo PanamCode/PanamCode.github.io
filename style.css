@@ -5,6 +5,8 @@
     --text-muted: #a0a0a0;
     --accent-orange: #ff7a00;
     --border-color: #333333;
+    --btn-gray: #2a2a2a; /* Серый цвет кнопок */
+    --btn-border: #000000; /* Черная обводка */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
@@ -24,55 +26,49 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
 
 /* --- КОНТЕНТ --- */
 .main-content { margin-left: 250px; padding: 40px; width: calc(100% - 250px); min-height: 100vh; }
+.header-center { text-align: center; margin-bottom: 30px; margin-top: 10px; }
+.header-center h1 { font-size: 36px; color: #fff; margin-bottom: 10px; }
+.subtitle { color: var(--text-muted); font-size: 16px; }
 
-/* Заголовок по центру */
-.header-center { text-align: center; margin-bottom: 50px; margin-top: 20px; }
-.header-center h1 { font-size: 42px; color: #fff; margin-bottom: 10px; }
-.subtitle { color: var(--text-muted); font-size: 18px; }
-
-/* Сетка для 8 пунктов */
-.grid-menu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto; /* Центрирование сетки */
-}
-
-/* Карточки пунктов */
-.grid-card {
-    background-color: var(--card-bg);
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    text-decoration: none;
-    color: #fff;
-    transition: 0.3s;
-}
-.grid-card:hover {
-    border-color: var(--accent-orange);
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.1);
-}
+/* Сетка для главной */
+.grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+.grid-card { background-color: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-decoration: none; color: #fff; transition: 0.3s; }
+.grid-card:hover { border-color: var(--accent-orange); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 122, 0, 0.1); }
 .grid-card h2 { color: var(--accent-orange); margin-bottom: 10px; font-size: 22px; }
 .grid-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
 
 /* Водяной знак */
 .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; }
-/* Стили для полей ввода */
+
+/* --- НОВЫЕ СТИЛИ ДЛЯ КНОПОК И ФОРМ --- */
 .input-field {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-    color: #fff;
-    border-radius: 6px;
-    font-size: 15px;
+    width: 100%; padding: 15px; margin-top: 5px; margin-bottom: 15px;
+    background-color: var(--btn-gray); border: 2px solid #444; color: #fff; border-radius: 8px; font-size: 16px;
 }
-.input-field:focus {
-    outline: none;
-    border-color: var(--accent-orange);
-    box-shadow: 0 0 5px rgba(255, 122, 0, 0.3);
+.input-field:focus { outline: none; border-color: var(--accent-orange); }
+
+/* Главная кнопка (как ты просил) */
+.btn-primary {
+    display: block;
+    width: 100%; /* На всю ширину */
+    padding: 15px 20px;
+    background-color: var(--btn-gray);
+    color: #ffffff;
+    border: 3px solid var(--btn-border); /* Черная обводка средней толщины */
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    transition: 0.3s;
+    margin-bottom: 10px;
 }
+.btn-primary:hover { background-color: #333; border-color: var(--accent-orange); }
+.btn-primary:focus { outline: none; }
+
+/* Убираем уродливые браузерные рамки */
+button:focus, input:focus, a:focus { outline: none !important; }
+
+/* Карточки целей */
+#goals-list { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
+.card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; }
