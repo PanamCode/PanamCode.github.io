@@ -5,8 +5,8 @@
     --text-muted: #a0a0a0;
     --accent-orange: #ff7a00;
     --border-color: #333333;
-    --btn-gray: #2a2a2a; /* Серый цвет кнопок */
-    --btn-border: #000000; /* Черная обводка */
+    --btn-gray: #2a2a2a;
+    --btn-border: #000000;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
@@ -14,127 +14,94 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
 
 /* --- БОКОВОЕ МЕНЮ --- */
 .sidebar {
-    width: 250px; background-color: #151515; border-right: 1px solid var(--border-color);
-    padding: 20px; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10;
+    width: 260px; 
+    background-color: #151515; 
+    border-right: 1px solid var(--border-color);
+    padding: 20px; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    height: 100vh; 
+    overflow-y: auto; 
+    z-index: 10;
 }
-.logo {
-    font-size: 15px;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 30px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Чтобы ничего не вылезало за края */
+
+/* Логотип */
+.logo { 
+    font-size: 15px; 
+    font-weight: bold; 
+    color: #fff; 
+    margin-bottom: 30px; 
+    text-align: center; 
+    border-bottom: 2px solid var(--accent-orange); 
+    padding-bottom: 15px; 
     white-space: nowrap;
+    overflow: hidden;
 }
-}
+
+/* Кнопки меню */
 .nav-btn {
-    display: block; width: 100%; padding: 12px; background: none; border: 1px solid transparent;
-    color: var(--text-muted); text-align: left; font-size: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; text-decoration: none; transition: 0.3s;
+    display: block; 
+    width: 100%; 
+    padding: 12px; 
+    background: none; 
+    border: 1px solid transparent;
+    color: var(--text-muted); 
+    text-align: left; 
+    font-size: 15px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    margin-bottom: 5px; 
+    text-decoration: none; 
+    transition: 0.3s;
 }
-.nav-btn:hover { background-color: var(--card-bg); color: var(--accent-orange); border-color: var(--accent-orange); }
+
+.nav-btn:hover, .nav-btn.active { 
+    background-color: var(--card-bg); 
+    color: var(--accent-orange); 
+    border-color: var(--accent-orange); 
+}
 
 /* --- КОНТЕНТ --- */
-.main-content { margin-left: 250px; padding: 40px; width: calc(100% - 250px); min-height: 100vh; }
+.main-content { margin-left: 260px; padding: 40px; width: calc(100% - 260px); min-height: 100vh; }
 .header-center { text-align: center; margin-bottom: 30px; margin-top: 10px; }
 .header-center h1 { font-size: 36px; color: #fff; margin-bottom: 10px; }
-.subtitle { color: var(--text-muted); font-size: 16px; }
 
-/* Сетка для главной */
-.grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-.grid-card { background-color: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-decoration: none; color: #fff; transition: 0.3s; }
-.grid-card:hover { border-color: var(--accent-orange); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 122, 0, 0.1); }
-.grid-card h2 { color: var(--accent-orange); margin-bottom: 10px; font-size: 22px; }
-.grid-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
-
-/* Водяной знак */
-.watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; }
-
-/* --- НОВЫЕ СТИЛИ ДЛЯ КНОПОК И ФОРМ --- */
+/* --- КНОПКИ И ФОРМЫ --- */
 .input-field {
     width: 100%; padding: 15px; margin-top: 5px; margin-bottom: 15px;
     background-color: var(--btn-gray); border: 2px solid #444; color: #fff; border-radius: 8px; font-size: 16px;
 }
 .input-field:focus { outline: none; border-color: var(--accent-orange); }
 
-/* Главная кнопка (как ты просил) */
 .btn-primary {
-    display: block;
-    width: 100%; /* На всю ширину */
-    padding: 15px 20px;
-    background-color: var(--btn-gray);
-    color: #ffffff;
-    border: 3px solid var(--btn-border); /* Черная обводка средней толщины */
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-    text-align: center;
-    transition: 0.3s;
-    margin-bottom: 10px;
+    display: block; width: 100%; padding: 15px 20px;
+    background-color: var(--btn-gray); color: #ffffff;
+    border: 3px solid var(--btn-border); border-radius: 10px;
+    cursor: pointer; font-weight: bold; font-size: 18px;
+    text-align: center; transition: 0.3s; margin-bottom: 10px;
 }
 .btn-primary:hover { background-color: #333; border-color: var(--accent-orange); }
-.btn-primary:focus { outline: none; }
-
-/* Убираем уродливые браузерные рамки */
 button:focus, input:focus, a:focus { outline: none !important; }
 
-/* Карточки целей */
+/* Карточки */
+.card { 
+    background: rgba(30, 30, 30, 0.6) !important; 
+    backdrop-filter: blur(12px); 
+    border: 1px solid rgba(255, 255, 255, 0.05) !important; 
+    border-radius: 20px !important; 
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+.card:hover { border-color: var(--accent-orange) !important; }
+
+/* Сетка для главной */
+.grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+.grid-card { background-color: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-decoration: none; color: #fff; transition: 0.3s; }
+.grid-card:hover { border-color: var(--accent-orange); transform: translateY(-5px); }
+.grid-card h2 { color: var(--accent-orange); margin-bottom: 10px; font-size: 22px; }
+.grid-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
+
+.watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; }
 #goals-list { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
-.card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; }
-/* --- ПРЕМИАЛЬНЫЕ АНИМАЦИИ И СТЕКЛО ДЛЯ ВСЕХ СТРАНИЦ --- */
-
-/* Анимация появления карточек */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Делаем все карточки (цели, планы, заметки) стеклянными и анимированными */
-.card {
-    background: rgba(30, 30, 30, 0.6) !important; /* Полупрозрачный фон */
-    backdrop-filter: blur(12px); /* Эффект стекла */
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 20px !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    animation: fadeInUp 0.6s ease backwards;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Эффект переливания при наведении на карточку (как на главной) */
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 122, 0, 0.05), transparent);
-    transform: translateX(-100%);
-    transition: 0.5s;
-    pointer-events: none; /* Чтобы не мешало кликам */
-}
-
-.card:hover {
-    transform: translateY(-5px) scale(1.01) !important;
-    border-color: rgba(255, 122, 0, 0.3) !important;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 122, 0, 0.05) !important;
-}
-
-.card:hover::before {
-    transform: translateX(100%);
-}
-
-/* Красивый градиентный заголовок для всех страниц */
-.header-center h1 {
-    background: linear-gradient(90deg, #fff, #aaa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 42px !important;
-    margin-bottom: 10px;
-}
-
-/* Плавное появление кнопок и форм */
-.btn-primary, .input-field {
-    transition: all 0.3s ease;
-}
