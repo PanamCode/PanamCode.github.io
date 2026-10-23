@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Привычки | Architect Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="watermark">🏛️</div>
+
+    <div class="sidebar">
+        <div class="logo">Architect Tracker</div>
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="goals.html" class="nav-btn">1. Цели</a>
+        <a href="plans.html" class="nav-btn">2. Планы</a>
+        <a href="wishes.html" class="nav-btn">3. Хотелки</a>
+        <a href="timer.html" class="nav-btn">4. Таймер</a>
+        <a href="notes.html" class="nav-btn">5. Заметки</a>
+        <a href="calendar.html" class="nav-btn">6. Календарь</a>
+        <a href="habits.html" class="nav-btn active">7. Привычки</a>
+        <a href="#" class="nav-btn">8. Идеи</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header-center">
+            <h1>Мои привычки</h1>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <!-- Форма добавления привычки -->
+            <div class="card" style="margin-bottom: 30px; text-align: left;">
+                <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая привычка</h2>
+                <input type="text" id="habit-name" class="input-field" placeholder="Название (например, Встать в 5 утра)">
+                
+                <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
+                    <label style="color: var(--text-muted); font-size: 14px; white-space: nowrap;">Цвет метки:</label>
+                    <input type="color" id="habit-color" value="#ff7a00" style="width: 50px; height: 40px; border: none; background: none; cursor: pointer;">
+                    <button class="btn-primary" onclick="addHabit()" style="flex: 1;">Добавить привычку</button>
+                </div>
+            </div>
+
+            <!-- Список привычек -->
+            <div id="habits-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
+        </div>
+    </div>
+
+    <script src="habits.js"></script>
+</body>
+</html>
