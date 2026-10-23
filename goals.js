@@ -1,3 +1,5 @@
+let goalToDelete = null;
+
 window.onload = function() {
     renderGoals();
 }
@@ -13,7 +15,7 @@ function saveGoal() {
     const image = document.getElementById('goal-image').value;
 
     if (!name) {
-        alert("Введите название цели!");
+        alert("Введите название цели!"); // Это можно оставить, если поле пустое
         return;
     }
 
@@ -36,11 +38,25 @@ function saveGoal() {
     renderGoals();
 }
 
+// Открытие модального окна удаления
 function deleteGoal(id) {
-    if(confirm("Точно удалить эту цель?")) {
+    goalToDelete = id;
+    document.getElementById('delete-modal').style.display = 'flex';
+}
+
+// Закрытие модального окна
+function closeModal() {
+    goalToDelete = null;
+    document.getElementById('delete-modal').style.display = 'none';
+}
+
+// Подтверждение удаления
+function confirmDelete() {
+    if (goalToDelete) {
         let goals = JSON.parse(localStorage.getItem('architect_goals') || "[]");
-        goals = goals.filter(g => g.id !== id);
+        goals = goals.filter(g => g.id !== goalToDelete);
         localStorage.setItem('architect_goals', JSON.stringify(goals));
+        closeModal();
         renderGoals();
     }
 }
@@ -86,10 +102,10 @@ function renderGoals() {
                 ${goal.image ? `<img src="${goal.image}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'">` : '<div style="width: 100px; height: 100px; background: #333; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 30px;">🎯</div>'}
                 
                 <div style="flex-grow: 1;">
-                    <h2 style="margin-bottom: 10px; font-size: 20px;">${goal.name}</h2>
+                    <h2 style="margin-bottom: 10px; font-size: 20px; color: #fff;">${goal.name}</h2>
                     ${goal.targetAmount > 0 ? `
-                        <div class="progress-container" style="height: 15px;">
-                            <div class="progress-bar" style="width: ${progressPercent}%;"></div>
+                        <div class="progress-container" style="height: 15px; background: #333; border-radius: 10px; overflow: hidden; margin-bottom: 5px;">
+                            <div class="progress-bar" style="width: ${progressPercent}%; background: var(--accent-orange); height: 100%;"></div>
                         </div>
                         <p style="color: #ccc; font-size: 14px; margin-top: 5px;">
                             Собрано: <strong>${goal.currentAmount.toLocaleString()} ₽</strong> из ${goal.targetAmount.toLocaleString()} ₽ 
@@ -98,9 +114,9 @@ function renderGoals() {
                     ` : `<p style="color: var(--text-muted);">Описательная цель</p>`}
                 </div>
 
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    ${goal.targetAmount > 0 ? `<button class="btn-primary" onclick="addMoney(${goal.id})" style="padding: 8px 15px; font-size: 14px;">+ Пополнить</button>` : ''}
-                    <button class="btn-primary" onclick="deleteGoal(${goal.id})" style="background-color: #e74c3c; padding: 8px 15px; font-size: 14px;">Удалить</button>
+                <div style="display: flex; flex-direction: column; gap: 10px; width: 150px;">
+                    ${goal.targetAmount > 0 ? `<button class="btn-primary" onclick="addMoney(${goal.id})" style="padding: 10px; font-size: 14px;">+ Пополнить</button>` : ''}
+                    <button class="btn-primary" onclick="deleteGoal(${goal.id})" style="background-color: #e74c3c; padding: 10px; font-size: 14px;">Удалить</button>
                 </div>
             </div>
         `;
