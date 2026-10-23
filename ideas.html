@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Идеи | Architect Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="watermark">🏛️</div>
+
+    <div class="sidebar">
+        <div class="logo">Architect Tracker</div>
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="goals.html" class="nav-btn">1. Цели</a>
+        <a href="plans.html" class="nav-btn">2. Планы</a>
+        <a href="wishes.html" class="nav-btn">3. Хотелки</a>
+        <a href="timer.html" class="nav-btn">4. Таймер</a>
+        <a href="notes.html" class="nav-btn">5. Заметки</a>
+        <a href="calendar.html" class="nav-btn">6. Календарь</a>
+        <a href="habits.html" class="nav-btn">7. Привычки</a>
+        <a href="ideas.html" class="nav-btn active">8. Идеи</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header-center">
+            <h1>Копилка идей</h1>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <!-- Форма добавления -->
+            <div class="card" style="margin-bottom: 30px; text-align: left;">
+                <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая идея</h2>
+                <input type="text" id="idea-title" class="input-field" placeholder="Заголовок (например, Сделать бота для кафе)">
+                <textarea id="idea-text" class="input-field" style="height: 80px; resize: vertical;" placeholder="Опиши идею подробнее..."></textarea>
+                <button class="btn-primary" onclick="addIdea()">Сохранить идею</button>
+            </div>
+
+            <!-- Список идей -->
+            <div id="ideas-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
+        </div>
+    </div>
+
+    <script src="ideas.js"></script>
+</body>
+</html>
