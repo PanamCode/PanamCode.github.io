@@ -1,4 +1,4 @@
-ъ<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,11 @@
     <style>
         body { background: radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 100%); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; min-height: 100vh; overflow-x: hidden; }
         .sidebar { width: 260px; background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(10px); border-right: 1px solid rgba(255, 255, 255, 0.05); padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; }
-        .logo { font-size: 15px; font-weight: 800; letter-spacing: 1px; color: #fff; margin-bottom: 40px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--accent-orange); padding-bottom: 15px; white-space: nowrap; overflow: hidden; }
+        
+        /* Стиль логотипа ТОЛЬКО здесь */
+        .logo { font-size: 16px; font-weight: 800; letter-spacing: 1px; color: #fff; margin-bottom: 40px; text-transform: uppercase; text-align: center; border-bottom: 2px solid var(--accent-orange); padding-bottom: 15px; white-space: nowrap; overflow: hidden; }
         .logo span { color: #ff7a00; }
+        
         .nav-btn { display: flex; align-items: center; padding: 14px 20px; margin-bottom: 8px; color: #888; text-decoration: none; border-radius: 12px; font-size: 15px; font-weight: 500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; }
         .nav-btn:hover, .nav-btn.active { background: rgba(255, 122, 0, 0.1); color: #ff7a00; border-color: rgba(255, 122, 0, 0.2); transform: translateX(5px); }
         .main-content { margin-left: 260px; padding: 50px; width: calc(100% - 260px); position: relative; z-index: 10; }
@@ -29,9 +32,9 @@
 <body>
 
     <div class="sidebar">
-        <div class="logo" style="text-align: center; padding-bottom: 15px; border-bottom: 2px solid var(--accent-orange); margin-bottom: 30px;">
-    Architect <span style="color: var(--accent-orange);">Tracker</span>
-</div>
+        <div class="logo">
+            Architect <span>Tracker</span>
+        </div>
         <a href="index.html" class="nav-btn active">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn">2. Планы</a>
