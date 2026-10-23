@@ -4,130 +4,31 @@
     --text-main: #ffffff;
     --text-muted: #a0a0a0;
     --accent-orange: #ff7a00;
-    --accent-white: #ffffff;
     --border-color: #333333;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-main); display: flex; min-height: 100vh; }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    display: flex;
-    min-height: 100vh;
-}
-
-/* --- БОКОВОЕ МЕНЮ --- */
 .sidebar {
-    width: 250px;
-    background-color: #151515;
-    border-right: 1px solid var(--border-color);
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    overflow-y: auto;
-    z-index: 10; /* Чтобы меню было поверх */
+    width: 250px; background-color: #151515; border-right: 1px solid var(--border-color);
+    padding: 20px; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--accent-white);
-    margin-bottom: 30px;
-    text-align: center;
-    border-bottom: 2px solid var(--accent-orange);
-    padding-bottom: 10px;
-}
+.logo { font-size: 24px; font-weight: bold; color: #fff; margin-bottom: 30px; text-align: center; border-bottom: 2px solid var(--accent-orange); padding-bottom: 10px; }
 
 .nav-btn {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: none;
-    border: 1px solid transparent;
-    color: var(--text-muted);
-    text-align: left;
-    font-size: 15px;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-bottom: 5px;
-    text-decoration: none;
+    display: block; width: 100%; padding: 12px; background: none; border: 1px solid transparent;
+    color: var(--text-muted); text-align: left; font-size: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; text-decoration: none;
 }
 
-.nav-btn:hover, .nav-btn.active {
-    background-color: var(--card-bg);
-    color: var(--accent-orange);
-    border-color: var(--accent-orange);
-}
+.nav-btn:hover { background-color: var(--card-bg); color: var(--accent-orange); border-color: var(--accent-orange); }
 
-/* --- КОНТЕНТ (Главный фикс) --- */
-.main-content {
-    margin-left: 250px; /* Отступ слева, чтобы меню не перекрывало текст */
-    padding: 40px;
-    width: calc(100% - 250px);
-    min-height: 100vh;
-}
+.main-content { margin-left: 250px; padding: 40px; width: calc(100% - 250px); min-height: 100vh; }
+h1 { color: #fff; margin-bottom: 20px; }
+.card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; }
 
-h1 {
-    color: var(--accent-white);
-    margin-bottom: 20px;
-}
+.btn-primary { background-color: var(--accent-orange); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; }
+.btn-primary:hover { background-color: #e66a00; }
 
-.card {
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 20px;
-}
-
-.btn-primary {
-    background-color: var(--accent-orange);
-    color: var(--accent-white);
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-.btn-primary:hover {
-    background-color: #e66a00;
-    transform: scale(1.05);
-}
-
-.progress-container {
-    background-color: var(--border-color);
-    height: 20px;
-    border-radius: 10px;
-    margin: 15px 0;
-    overflow: hidden;
-}
-
-.progress-bar {
-    background-color: var(--accent-orange);
-    height: 100%;
-    width: 0%;
-    transition: width 0.8s ease-in-out;
-}
-
-/* Водяной знак */
-.watermark {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.03;
-    font-size: 300px;
-    pointer-events: none;
-    z-index: 0;
-}
+.watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; }
