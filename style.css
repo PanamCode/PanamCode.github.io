@@ -28,13 +28,15 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
 
 /* Логотип */
 .logo { 
-    font-size: 15px; 
-    font-weight: bold; 
+    font-size: 16px; /* Размер шрифта, как на главной */
+    font-weight: 800; 
+    letter-spacing: 1px; 
     color: #fff; 
     margin-bottom: 30px; 
-    text-align: center; 
-    border-bottom: 2px solid var(--accent-orange); 
-    padding-bottom: 15px; 
+    text-transform: uppercase; 
+    text-align: center; /* Текст по центру */
+    border-bottom: 2px solid var(--accent-orange); /* Полоска */
+    padding-bottom: 15px; /* Отступ от текста до полоски */
     white-space: nowrap;
     overflow: hidden;
 }
