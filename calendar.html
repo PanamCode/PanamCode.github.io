@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь | Architect Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="watermark">🏛️</div>
+
+    <div class="sidebar">
+        <div class="logo">Architect Tracker</div>
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="goals.html" class="nav-btn">1. Цели</a>
+        <a href="plans.html" class="nav-btn">2. Планы</a>
+        <a href="wishes.html" class="nav-btn">3. Хотелки</a>
+        <a href="timer.html" class="nav-btn">4. Таймер</a>
+        <a href="notes.html" class="nav-btn">5. Заметки</a>
+        <a href="calendar.html" class="nav-btn active">6. Календарь</a>
+        <a href="#" class="nav-btn">7. Привычки</a>
+        <a href="#" class="nav-btn">8. Идеи</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header-center">
+            <h1>Календарь побед</h1>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="card" style="text-align: left;">
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Нажми на любой день, чтобы отметить его как <span style="color: #2ecc71;">успех</span> (зеленый) или <span style="color: #e74c3c;">провал</span> (красный), и оставить заметку.</p>
+                
+                <!-- Заголовок календаря -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <button class="btn-primary" style="width: auto; padding: 5px 15px;" onclick="changeMonth(-1)">←</button>
+                    <h2 id="month-year" style="color: #fff; margin: 0;">Месяц</h2>
+                    <button class="btn-primary" style="width: auto; padding: 5px 15px;" onclick="changeMonth(1)">→</button>
+                </div>
+
+                <!-- Сетка календаря -->
+                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center;">
+                    <div style="color: var(--text-muted); font-size: 12px; padding-bottom: 10px;">Пн</div>
+                    <div style="color: var(--text-muted); font-size: 12px; padding-bottom: 10px;">Вт</div>
+                    <div style="color: var(--text-muted); font-size: 12px; padding-bottom: 10px;">Ср</div>
+                    <div style="color: var(--text-muted); font-size: 12px; padding-bottom: 10px;">Чт</div>
+                    <div style="color: var(--text-muted); font-size: 12px; padding-bottom: 10px;">Пт</div>
+                    <div style="color: var(--text-muted); font-size: 12px; padding-bottom: 10px;">Сб</div>
+                    <div style="color: var(--text-muted); font-size: 12px; padding-bottom: 10px;">Вс</div>
+                    
+                    <div id="calendar-days" style="display: contents;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для заметки к дню -->
+    <div id="day-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="card" style="max-width: 400px; width: 100%; text-align: left;">
+            <h2 id="modal-date-title" style="color: var(--accent-orange); margin-bottom: 15px;">День</h2>
+            
+            <select id="day-status" class="input-field" style="margin-bottom: 15px;">
+                <option value="none">Обычный день</option>
+                <option value="success">Успех (Зеленый)</option>
+                <option value="fail">Провал (Красный)</option>
+            </select>
+            
+            <textarea id="day-note" class="input-field" style="height: 80px; resize: vertical;" placeholder="Что произошло в этот день?"></textarea>
+            
+            <div style="margin-top: 15px;">
+                <button class="btn-primary" onclick="saveDay()">Сохранить</button>
+                <button class="btn-primary" style="background: #444;" onclick="closeDayModal()">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="calendar.js"></script>
+</body>
+</html>
