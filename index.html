@@ -7,26 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🏛️ Architect Tracker</h1>
-        
-        <div class="card">
-            <h2>Цель: Porsche Panamera</h2>
-            <p>Стоимость: 8 500 000 ₽</p>
-            <div class="progress-bar">
-                <div class="progress" id="progress-bar"></div>
-            </div>
-            <p id="progress-text">Накоплено: 0 ₽ (0%)</p>
-            <button onclick="addMoney()">+ Пополнить копилку</button>
-        </div>
 
+    <div class="watermark">🏛️</div>
+
+    <div class="sidebar">
+        <div class="logo">Architect Tracker</div>
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="goals.html" class="nav-btn">1. Цели</a>
+        <a href="#" class="nav-btn">2. Планы (в разработке)</a>
+        <a href="#" class="nav-btn">3. Хотелки (в разработке)</a>
+        <a href="#" class="nav-btn">4. Таймер (в разработке)</a>
+        <a href="#" class="nav-btn">5. Заметки (в разработке)</a>
+        <a href="#" class="nav-btn">6. Календарь (в разработке)</a>
+        <a href="#" class="nav-btn">7. Привычки (в разработке)</a>
+        <a href="#" class="nav-btn">8. Идеи (в разработке)</a>
+    </div>
+
+    <div class="main-content">
+        <h1>Добро пожаловать, Архитектор.</h1>
         <div class="card">
-            <h2>📝 Мои заметки и планы</h2>
-            <textarea id="note-input" placeholder="Напиши свою гениальную мысль..."></textarea>
-            <button onclick="saveNote()">Сохранить</button>
-            <ul id="notes-list"></ul>
+            <h2>О приложении</h2>
+            <p style="color: var(--text-muted); margin-top: 10px; line-height: 1.6;">
+                Это твой личный трекер. Здесь ты строишь свою империю, фиксируешь цели, планы, идеи и календарь побед. Никаких лишних глаз. Только ты и твой путь.
+            </p>
         </div>
     </div>
-    <script src="script.js"></script>
+
 </body>
 </html>
