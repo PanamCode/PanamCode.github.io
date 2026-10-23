@@ -5,8 +5,6 @@
     --text-muted: #a0a0a0;
     --accent-orange: #ff7a00;
     --accent-white: #ffffff;
-    --success-green: #2ecc71;
-    --danger-red: #e74c3c;
     --border-color: #333333;
 }
 
@@ -15,7 +13,6 @@
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    transition: all 0.3s ease; /* Плавные анимации для всего */
 }
 
 body {
@@ -32,15 +29,18 @@ body {
     border-right: 1px solid var(--border-color);
     padding: 20px;
     position: fixed;
-    height: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
     overflow-y: auto;
+    z-index: 10; /* Чтобы меню было поверх */
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
     color: var(--accent-white);
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-align: center;
     border-bottom: 2px solid var(--accent-orange);
     padding-bottom: 10px;
@@ -49,30 +49,30 @@ body {
 .nav-btn {
     display: block;
     width: 100%;
-    padding: 15px;
+    padding: 12px;
     background: none;
     border: 1px solid transparent;
     color: var(--text-muted);
     text-align: left;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-decoration: none;
 }
 
-.nav-btn:hover {
+.nav-btn:hover, .nav-btn.active {
     background-color: var(--card-bg);
     color: var(--accent-orange);
     border-color: var(--accent-orange);
-    transform: translateX(5px); /* Анимация сдвига */
 }
 
-/* --- КОНТЕНТ --- */
+/* --- КОНТЕНТ (Главный фикс) --- */
 .main-content {
-    margin-left: 250px;
+    margin-left: 250px; /* Отступ слева, чтобы меню не перекрывало текст */
     padding: 40px;
     width: calc(100% - 250px);
+    min-height: 100vh;
 }
 
 h1 {
@@ -88,7 +88,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* --- КНОПКИ --- */
 .btn-primary {
     background-color: var(--accent-orange);
     color: var(--accent-white);
@@ -98,14 +97,14 @@ h1 {
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
+    transition: 0.3s;
 }
 
 .btn-primary:hover {
     background-color: #e66a00;
-    transform: scale(1.05); /* Анимация увеличения */
+    transform: scale(1.05);
 }
 
-/* --- ПРОГРЕСС-БАР --- */
 .progress-container {
     background-color: var(--border-color);
     height: 20px;
@@ -118,7 +117,7 @@ h1 {
     background-color: var(--accent-orange);
     height: 100%;
     width: 0%;
-    transition: width 0.8s ease-in-out; /* Плавное заполнение */
+    transition: width 0.8s ease-in-out;
 }
 
 /* Водяной знак */
@@ -130,5 +129,5 @@ h1 {
     opacity: 0.03;
     font-size: 300px;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
 }
