@@ -1,21 +1,22 @@
 :root {
-    --bg-color: #121212;
-    --card-bg: #1e1e1e;
+    --bg-color: #0f1115; /* Очень темный, почти черный с синевой */
+    --card-bg: #1a1d24; /* Темно-серый с синим оттенком */
     --text-main: #ffffff;
-    --text-muted: #a0a0a0;
-    --accent-orange: #ff7a00;
-    --border-color: #333333;
-    --btn-gray: #2a2a2a;
+    --text-muted: #8b949e;
+    --accent-color: #2ea6ff; /* Неоново-синий (как Telegram) */
+    --accent-hover: #1c88d6;
+    --border-color: #2d333b;
+    --btn-gray: #21262d;
     --btn-border: #000000;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
 body { background-color: var(--bg-color); color: var(--text-main); display: flex; min-height: 100vh; }
 
 /* --- БОКОВОЕ МЕНЮ --- */
 .sidebar {
     width: 260px; 
-    background-color: #151515; 
+    background-color: #14171c; 
     border-right: 1px solid var(--border-color);
     padding: 20px; 
     position: fixed; 
@@ -26,16 +27,18 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     z-index: 10;
 }
 
-/* Логотип */
+/* Логотип с градиентом */
 .logo { 
     font-size: 16px; 
     font-weight: 800; 
     letter-spacing: 1px; 
-    color: #fff; 
+    background: linear-gradient(90deg, #fff, var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 30px; 
     text-transform: uppercase; 
     text-align: center; 
-    border-bottom: 2px solid var(--accent-orange); 
+    border-bottom: 2px solid var(--accent-color); 
     padding-bottom: 15px; 
     white-space: nowrap;
     overflow: hidden;
@@ -55,69 +58,82 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     border-radius: 8px; 
     margin-bottom: 5px; 
     text-decoration: none; 
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .nav-btn:hover, .nav-btn.active { 
-    background-color: var(--card-bg); 
-    color: var(--accent-orange); 
-    border-color: var(--accent-orange); 
+    background: rgba(46, 166, 255, 0.1); 
+    color: var(--accent-color); 
+    border-color: rgba(46, 166, 255, 0.3); 
+    transform: translateX(5px);
 }
 
 /* --- КОНТЕНТ --- */
 .main-content { margin-left: 260px; padding: 40px; width: calc(100% - 260px); min-height: 100vh; }
 .header-center { text-align: center; margin-bottom: 30px; margin-top: 10px; }
-.header-center h1 { font-size: 36px; color: #fff; margin-bottom: 10px; }
+.header-center h1 { 
+    font-size: 36px; 
+    background: linear-gradient(90deg, #fff, #8bbfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px; 
+}
 
 /* --- КНОПКИ И ФОРМЫ --- */
 .input-field {
     width: 100%; padding: 15px; margin-top: 5px; margin-bottom: 15px;
-    background-color: var(--btn-gray); border: 2px solid #444; color: #fff; border-radius: 8px; font-size: 16px;
+    background-color: var(--btn-gray); border: 2px solid var(--border-color); color: #fff; border-radius: 8px; font-size: 16px;
+    transition: all 0.3s ease;
 }
-.input-field:focus { outline: none; border-color: var(--accent-orange); }
+.input-field:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 10px rgba(46, 166, 255, 0.2); }
 
 .btn-primary {
     display: block; width: 100%; padding: 15px 20px;
-    background-color: var(--btn-gray); color: #ffffff;
-    border: 3px solid var(--btn-border); border-radius: 10px;
-    cursor: pointer; font-weight: bold; font-size: 18px;
-    text-align: center; transition: 0.3s; margin-bottom: 10px;
+    background: linear-gradient(180deg, #2a313a, #1f252d); color: #ffffff;
+    border: 2px solid var(--btn-border); border-radius: 10px;
+    cursor: pointer; font-weight: bold; font-size: 16px;
+    text-align: center; transition: all 0.3s ease; margin-bottom: 10px;
 }
-.btn-primary:hover { background-color: #333; border-color: var(--accent-orange); }
+.btn-primary:hover { background: linear-gradient(180deg, #323b45, #262e37); border-color: var(--accent-color); transform: translateY(-2px); }
 button:focus, input:focus, a:focus { outline: none !important; }
 
-/* Карточки */
+/* Карточки с эффектом стекла и синим свечением */
 .card { 
-    background: rgba(30, 30, 30, 0.6) !important; 
+    background: linear-gradient(145deg, rgba(30, 34, 42, 0.8), rgba(20, 23, 28, 0.8)) !important; 
     backdrop-filter: blur(12px); 
     border: 1px solid rgba(255, 255, 255, 0.05) !important; 
-    border-radius: 20px !important; 
+    border-radius: 15px !important; 
     padding: 20px;
     margin-bottom: 20px;
-    transition: 0.3s;
+    transition: all 0.4s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-.card:hover { border-color: var(--accent-orange) !important; }
+.card:hover { 
+    border-color: rgba(46, 166, 255, 0.4) !important; 
+    box-shadow: 0 8px 25px rgba(46, 166, 255, 0.1); 
+    transform: translateY(-3px);
+}
 
 /* Сетка для главной */
 .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-.grid-card { background-color: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-decoration: none; color: #fff; transition: 0.3s; }
-.grid-card:hover { border-color: var(--accent-orange); transform: translateY(-5px); }
-.grid-card h2 { color: var(--accent-orange); margin-bottom: 10px; font-size: 22px; }
+.grid-card { background-color: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-decoration: none; color: #fff; transition: all 0.3s ease; }
+.grid-card:hover { border-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(46, 166, 255, 0.1); }
+.grid-card h2 { color: var(--accent-color); margin-bottom: 10px; font-size: 22px; }
 .grid-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
 
 /* --- МОДАЛЬНОЕ ОКНО --- */
 .custom-modal {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;
+    background: rgba(0, 0, 0, 0.85); z-index: 9999; justify-content: center; align-items: center;
     backdrop-filter: blur(5px);
 }
 .custom-modal-content {
-    background: #1e1e1e; padding: 30px; border-radius: 15px;
-    border: 2px solid #e74c3c; max-width: 400px; width: 90%; text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: #1a1d24; padding: 30px; border-radius: 15px;
+    border: 1px solid var(--accent-color); max-width: 400px; width: 90%; text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(46, 166, 255, 0.1);
 }
-.custom-modal h3 { color: #e74c3c; margin-bottom: 15px; font-size: 22px; }
-.custom-modal p { color: #a0a0a0; margin-bottom: 20px; }
+.custom-modal h3 { color: var(--accent-color); margin-bottom: 15px; font-size: 22px; }
+.custom-modal p { color: var(--text-muted); margin-bottom: 20px; }
 .custom-modal-buttons { display: flex; gap: 10px; }
 .custom-modal-btn {
     flex: 1; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold;
@@ -125,19 +141,8 @@ button:focus, input:focus, a:focus { outline: none !important; }
 }
 .btn-confirm-delete { background: #e74c3c; color: white; }
 .btn-confirm-delete:hover { background: #c0392b; }
-.btn-cancel-delete { background: #333; color: white; }
-.btn-cancel-delete:hover { background: #555; }
+.btn-cancel-delete { background: var(--btn-gray); color: white; }
+.btn-cancel-delete:hover { background: #333; }
 
-/* Принудительная анимация для всех карточек и чекбоксов */
-.card {
-    transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease !important;
-}
-
-/* Анимация для чекбокса (квадратика) */
-div[onclick^="togglePlan"], 
-div[onclick^="toggleWish"], 
-div[onclick^="toggleHabitDay"] {
-    transition: background-color 0.3s ease, border-color 0.3s ease !important;
-}
-.watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; }
+.watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; color: var(--accent-color); }
 #goals-list { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
