@@ -29,7 +29,8 @@ function saveNote() {
 }
 
 function deleteNote(id) {
-    if(confirm("Удалить эту заметку?")) {
+    deleteTargetId = id; // Сохраняем ID
+document.getElementById('delete-modal').style.display = 'flex'; // Показываем окно
         let notes = JSON.parse(localStorage.getItem('architect_notes') || "[]");
         notes = notes.filter(n => n.id !== id);
         localStorage.setItem('architect_notes', JSON.stringify(notes));
