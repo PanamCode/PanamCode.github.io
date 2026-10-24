@@ -35,7 +35,8 @@ function addHabit() {
 }
 
 function deleteHabit(id) {
-    if(confirm("Удалить эту привычку?")) {
+    deleteTargetId = id; // Сохраняем ID
+document.getElementById('delete-modal').style.display = 'flex'; // Показываем окно
         let habits = JSON.parse(localStorage.getItem('architect_habits') || "[]");
         habits = habits.filter(h => h.id !== id);
         localStorage.setItem('architect_habits', JSON.stringify(habits));
