@@ -42,8 +42,8 @@ function togglePlan(id) {
     }
 }
 
-function deletePlan(id) {
-    if(confirm("Удалить этот план?")) {
+deleteTargetId = id; // Сохраняем ID
+document.getElementById('delete-modal').style.display = 'flex'; // Показываем окно
         let plans = JSON.parse(localStorage.getItem('architect_plans') || "[]");
         plans = plans.filter(p => p.id !== id);
         localStorage.setItem('architect_plans', JSON.stringify(plans));
