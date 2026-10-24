@@ -12,8 +12,8 @@
 
     <div class="sidebar">
         <div class="logo">
-    <span>Architect</span> <span style="color: var(--accent-orange);">Tracker</span>
-</div>
+            <span>Architect</span> <span style="color: var(--accent-orange);">Tracker</span>
+        </div>
         <a href="index.html" class="nav-btn">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn active">2. Планы</a>
@@ -57,6 +57,18 @@
 
             <!-- Список планов -->
             <div id="plans-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- ВОТ ЭТОГО БЛОКА У ТЕБЯ НЕ ХВАТАЛО -->
+    <div id="custom-delete-modal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h3>Удалить план?</h3>
+            <p>Ты уверен, что хочешь удалить этот план? Это действие нельзя отменить.</p>
+            <div class="custom-modal-buttons">
+                <button class="custom-modal-btn btn-confirm-delete" onclick="confirmCustomDelete()">Да, удалить</button>
+                <button class="custom-modal-btn btn-cancel-delete" onclick="closeCustomModal()">Отмена</button>
+            </div>
         </div>
     </div>
 
