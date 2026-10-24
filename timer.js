@@ -28,7 +28,8 @@ function addTimer() {
 }
 
 function deleteTimer(id) {
-    if(confirm("Удалить этот таймер?")) {
+    deleteTargetId = id; // Сохраняем ID
+document.getElementById('delete-modal').style.display = 'flex'; // Показываем окно
         let timers = JSON.parse(localStorage.getItem('architect_timers') || "[]");
         timers = timers.filter(t => t.id !== id);
         localStorage.setItem('architect_timers', JSON.stringify(timers));
