@@ -46,7 +46,8 @@ function toggleStatus(id) {
 }
 
 function deleteIdea(id) {
-    if(confirm("Удалить эту идею?")) {
+    deleteTargetId = id; // Сохраняем ID
+document.getElementById('delete-modal').style.display = 'flex'; // Показываем окно
         let ideas = JSON.parse(localStorage.getItem('architect_ideas') || "[]");
         ideas = ideas.filter(i => i.id !== id);
         localStorage.setItem('architect_ideas', JSON.stringify(ideas));
