@@ -51,7 +51,8 @@ function toggleStep(wishId, stepIndex) {
 }
 
 function deleteWish(id) {
-    if(confirm("Удалить эту хотелку?")) {
+    deleteTargetId = id; // Сохраняем ID
+document.getElementById('delete-modal').style.display = 'flex'; // Показываем окно
         let wishes = JSON.parse(localStorage.getItem('architect_wishes') || "[]");
         wishes = wishes.filter(w => w.id !== id);
         localStorage.setItem('architect_wishes', JSON.stringify(wishes));
