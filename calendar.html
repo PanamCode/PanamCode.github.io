@@ -2,15 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chronicle | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-    
     <div class="top-bar"><div class="logo">Architect OS</div></div>
-
     <div class="dock">
         <a href="index.html" class="dock-item"><div class="dock-icon">🌌</div><div class="dock-label">Core</div></a>
         <a href="goals.html" class="dock-item"><div class="dock-icon">💎</div><div class="dock-label">Wealth</div></a>
@@ -22,39 +19,23 @@
         <a href="habits.html" class="dock-item"><div class="dock-icon">🔥</div><div class="dock-label">Discipline</div></a>
         <a href="ideas.html" class="dock-item"><div class="dock-icon">💡</div><div class="dock-label">Vault</div></a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Chronicle (Календарь)</h1></div>
+        <div class="header-center"><h1>Chronicle</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
-            <div class="card" style="text-align: left;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <button class="btn-primary" style="width: auto; padding: 5px 15px;" onclick="changeMonth(-1)">←</button>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                    <button class="btn-primary" style="width: auto;" onclick="changeMonth(-1)">←</button>
                     <h2 id="month-year" style="color: #fff;">Месяц</h2>
-                    <button class="btn-primary" style="width: auto; padding: 5px 15px;" onclick="changeMonth(1)">→</button>
+                    <button class="btn-primary" style="width: auto;" onclick="changeMonth(1)">→</button>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center;">
-                    <div style="color: var(--text-muted);">Пн</div><div style="color: var(--text-muted);">Вт</div><div style="color: var(--text-muted);">Ср</div><div style="color: var(--text-muted);">Чт</div><div style="color: var(--text-muted);">Пт</div><div style="color: var(--text-muted);">Сб</div><div style="color: var(--text-muted);">Вс</div>
+                <div class="calendar-grid">
+                    <div style="color: var(--text-muted); text-align: center;">Пн</div><div style="color: var(--text-muted); text-align: center;">Вт</div><div style="color: var(--text-muted); text-align: center;">Ср</div><div style="color: var(--text-muted); text-align: center;">Чт</div><div style="color: var(--text-muted); text-align: center;">Пт</div><div style="color: var(--text-muted); text-align: center;">Сб</div><div style="color: var(--text-muted); text-align: center;">Вс</div>
                     <div id="calendar-days" style="display: contents;"></div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="day-modal" class="custom-modal">
-        <div class="custom-modal-content">
-            <h2 id="modal-date-title" style="color: var(--neon-cyan); margin-bottom: 15px;">День</h2>
-            <select id="day-status" class="input-field" style="margin-bottom: 15px;">
-                <option value="none">Обычный</option>
-                <option value="success">Успех</option>
-                <option value="fail">Провал</option>
-            </select>
-            <textarea id="day-note" class="input-field" style="height: 80px;" placeholder="Что произошло?"></textarea>
-            <div class="custom-modal-buttons">
-                <button class="custom-modal-btn btn-confirm-delete" onclick="saveDay()" style="background: var(--neon-cyan);">Сохранить</button>
-                <button class="custom-modal-btn btn-cancel-delete" onclick="closeDayModal()">Отмена</button>
-            </div>
-        </div>
-    </div>
+    <div id="day-modal" class="custom-modal"><div class="custom-modal-content"><h2 id="modal-date-title">День</h2><select id="day-status" class="input-field"><option value="none">Обычный</option><option value="success">Успех</option><option value="fail">Провал</option></select><textarea id="day-note" class="input-field"></textarea><div class="custom-modal-buttons"><button class="custom-modal-btn btn-confirm-delete" onclick="saveDay()">Сохранить</button><button class="custom-modal-btn btn-cancel-delete" onclick="closeDayModal()">Отмена</button></div></div></div>
     <script src="calendar.js"></script>
     <script src="effects.js"></script>
 </body>
