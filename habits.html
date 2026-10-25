@@ -2,15 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discipline | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-    
     <div class="top-bar"><div class="logo">Architect OS</div></div>
-
     <div class="dock">
         <a href="index.html" class="dock-item"><div class="dock-icon">🌌</div><div class="dock-label">Core</div></a>
         <a href="goals.html" class="dock-item"><div class="dock-icon">💎</div><div class="dock-label">Wealth</div></a>
@@ -22,19 +19,14 @@
         <a href="habits.html" class="dock-item active"><div class="dock-icon">🔥</div><div class="dock-label">Discipline</div></a>
         <a href="ideas.html" class="dock-item"><div class="dock-icon">💡</div><div class="dock-label">Vault</div></a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Discipline (Привычки)</h1></div>
+        <div class="header-center"><h1>Discipline</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
-            <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новая привычка</h2>
-                <input type="text" id="habit-name" class="input-field" placeholder="Название">
-                <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
-                    <input type="color" id="habit-color" value="#00f3ff" style="width: 50px; height: 40px; border: none; background: none;">
-                    <button class="btn-primary" onclick="addHabit()" style="flex: 1;">Добавить</button>
-                </div>
+            <div class="card" style="margin-bottom: 30px;">
+                <input type="text" id="habit-name" class="input-field" placeholder="Название привычки">
+                <button class="btn-primary" onclick="addHabit()">Добавить</button>
             </div>
-            <div id="habits-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
+            <div id="habits-list" class="habits-grid"></div>
         </div>
     </div>
     <script src="habits.js"></script>
