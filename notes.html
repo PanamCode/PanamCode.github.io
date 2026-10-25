@@ -7,13 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="watermark">🏛️</div>
-
     <div class="sidebar">
-        <div class="logo">
-    <span>Architect</span> <span style="color: var(--accent-orange);">Tracker</span>
-</div>
+        <div class="logo">Architect Tracker</div>
         <a href="index.html" class="nav-btn">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn">2. Планы</a>
@@ -26,17 +21,13 @@
     </div>
 
     <div class="main-content">
-        <div class="header-center">
-            <h1>Мои заметки</h1>
-        </div>
+        <div class="header-center"><h1>Мои заметки</h1></div>
         
         <div style="max-width: 800px; margin: 0 auto;">
-            <!-- Форма добавления -->
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая заметка</h2>
-                <input type="text" id="note-title" class="input-field" placeholder="Заголовок (например: Идея для бизнеса)">
+                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новая заметка</h2>
+                <input type="text" id="note-title" class="input-field" placeholder="Заголовок">
                 <textarea id="note-text" class="input-field" style="height: 100px; resize: vertical;" placeholder="Текст заметки..."></textarea>
-                
                 <div style="display: flex; gap: 15px;">
                     <select id="note-category" class="input-field" style="flex: 1;">
                         <option value="Советы">Советы</option>
@@ -47,15 +38,11 @@
                     <button class="btn-primary" onclick="saveNote()" style="flex: 1;">Добавить</button>
                 </div>
             </div>
-
-            <!-- Поиск -->
             <input type="text" id="search-bar" class="input-field" placeholder="Поиск по заметкам..." oninput="renderNotes()">
-
-            <!-- Список заметок -->
             <div id="notes-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
         </div>
     </div>
-
     <script src="notes.js"></script>
+    <script src="effects.js"></script>
 </body>
 </html>
