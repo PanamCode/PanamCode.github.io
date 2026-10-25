@@ -3,46 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Хотелки | Architect Tracker</title>
+    <title>Desires | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
     <div class="sidebar">
-        <div class="logo">Architect Tracker</div>
-        <a href="index.html" class="nav-btn">Главная</a>
-        <a href="goals.html" class="nav-btn">1. Цели</a>
-        <a href="plans.html" class="nav-btn">2. Планы</a>
-        <a href="wishes.html" class="nav-btn active">3. Хотелки</a>
-        <a href="timer.html" class="nav-btn">4. Таймер</a>
-        <a href="notes.html" class="nav-btn">5. Заметки</a>
-        <a href="calendar.html" class="nav-btn">6. Календарь</a>
-        <a href="habits.html" class="nav-btn">7. Привычки</a>
-        <a href="ideas.html" class="nav-btn">8. Идеи</a>
+        <div class="logo">Architect OS</div>
+        <a href="index.html" class="nav-btn">Core</a>
+        <a href="goals.html" class="nav-btn">Wealth</a>
+        <a href="plans.html" class="nav-btn">Missions</a>
+        <a href="wishes.html" class="nav-btn active">Desires</a>
+        <a href="timer.html" class="nav-btn">Countdown</a>
+        <a href="notes.html" class="nav-btn">Database</a>
+        <a href="calendar.html" class="nav-btn">Chronicle</a>
+        <a href="habits.html" class="nav-btn">Discipline</a>
+        <a href="ideas.html" class="nav-btn">Vault</a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Мои хотелки</h1></div>
-        
+        <div class="header-center"><h1>Desires (Хотелки)</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новая хотелка</h2>
+                <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новое желание</h2>
                 <input type="text" id="wish-title" class="input-field" placeholder="Чего хочется?">
-                <div style="display: flex; gap: 15px; margin-bottom: 15px;">
-                    <select id="wish-time" class="input-field" style="flex: 1;">
-                        <option value="На жизнь">На жизнь</option>
-                        <option value="На год">На год</option>
-                        <option value="На месяц">На месяц</option>
-                    </select>
-                </div>
-                <textarea id="wish-steps" class="input-field" style="height: 80px; resize: vertical;" placeholder="Шаги для достижения (каждый с новой строки)"></textarea>
+                <select id="wish-time" class="input-field">
+                    <option value="На жизнь">На жизнь</option>
+                    <option value="На год">На год</option>
+                    <option value="На месяц">На месяц</option>
+                </select>
+                <textarea id="wish-steps" class="input-field" style="height: 80px;" placeholder="Шаги (каждый с новой строки)"></textarea>
                 <button class="btn-primary" onclick="addWish()">Добавить</button>
             </div>
-
             <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                <button class="btn-primary" style="background: #333;" onclick="filterWishes('Все')">Все</button>
-                <button class="btn-primary" style="background: #333;" onclick="filterWishes('На жизнь')">На жизнь</button>
-                <button class="btn-primary" style="background: #333;" onclick="filterWishes('На год')">На год</button>
-                <button class="btn-primary" style="background: #333;" onclick="filterWishes('На месяц')">На месяц</button>
+                <button class="btn-primary" onclick="filterWishes('Все')">Все</button>
+                <button class="btn-primary" onclick="filterWishes('На жизнь')">На жизнь</button>
+                <button class="btn-primary" onclick="filterWishes('На год')">На год</button>
+                <button class="btn-primary" onclick="filterWishes('На месяц')">На месяц</button>
             </div>
             <div id="wishes-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
         </div>
