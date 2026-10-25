@@ -6,21 +6,82 @@
     <title>Architect Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .header h1 { font-size: 48px; font-weight: 900; margin: 0 0 15px 0; background: linear-gradient(90deg, #fff, #8bbfff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header p { color: #8b949e; font-size: 18px; max-width: 600px; line-height: 1.6; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; perspective: 1000px; }
-        .grid-card { background: rgba(20, 24, 33, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); padding: 30px; border-radius: 20px; text-decoration: none; color: #fff; transition: border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; transform-style: preserve-3d; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-        .grid-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(46,166,255,0.1), transparent); transform: skewX(-20deg); transition: 0.5s; }
-        .grid-card:hover::before { left: 150%; }
-        .grid-card:hover { border-color: rgba(46, 166, 255, 0.5); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(46, 166, 255, 0.2); }
-        .card-icon { font-size: 32px; margin-bottom: 20px; display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(46, 166, 255, 0.1); padding: 15px; border-radius: 15px; color: var(--accent-color); box-shadow: 0 0 15px rgba(46, 166, 255, 0.2); transform: translateZ(30px); }
-        .grid-card h2 { font-size: 22px; margin: 0 0 10px 0; font-weight: 700; transform: translateZ(20px); }
-        .grid-card p { color: #8b949e; font-size: 15px; line-height: 1.5; margin: 0; transform: translateZ(10px); }
+        .header h1 { font-size: 52px; font-weight: 800; letter-spacing: -1px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: var(--text-muted); font-size: 18px; max-width: 600px; line-height: 1.6; margin-top: 10px; }
+        
+        /* Bento Grid (Разные размеры карточек) */
+        .bento-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            grid-auto-rows: minmax(180px, auto);
+            gap: 20px; 
+            perspective: 1000px; 
+        }
+        
+        .bento-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color); 
+            padding: 30px; 
+            border-radius: 24px; 
+            text-decoration: none; 
+            color: #fff; 
+            transition: all 0.4s ease;
+            position: relative; 
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transform-style: preserve-3d;
+        }
+
+        /* Размеры карточек */
+        .bento-card:nth-child(1) { grid-column: span 2; grid-row: span 2; justify-content: center; }
+        .bento-card:nth-child(2) { grid-column: span 2; }
+        .bento-card:nth-child(3) { grid-column: span 1; }
+        .bento-card:nth-child(4) { grid-column: span 1; }
+        .bento-card:nth-child(5) { grid-column: span 2; }
+        .bento-card:nth-child(6) { grid-column: span 1; }
+        .bento-card:nth-child(7) { grid-column: span 1; }
+        .bento-card:nth-child(8) { grid-column: span 4; flex-direction: row; align-items: center; justify-content: space-between; }
+
+        /* Градиентная обводка при наведении */
+        .bento-card::before { 
+            content: ''; position: absolute; inset: 0; border-radius: 24px; padding: 2px; 
+            background: var(--accent-gradient); 
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); 
+            -webkit-mask-composite: xor; mask-composite: exclude; 
+            opacity: 0; transition: 0.4s; 
+        }
+        .bento-card:hover::before { opacity: 1; }
+        .bento-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: var(--shadow-heavy), var(--shadow-glow); 
+        }
+        
+        .card-icon { 
+            font-size: 40px; margin-bottom: 20px; 
+            width: 70px; height: 70px; 
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.03); 
+            border-radius: 20px; 
+            border: 1px solid var(--border-color);
+            transform: translateZ(30px); 
+        }
+        .bento-card h2 { font-size: 24px; margin-bottom: 8px; font-weight: 700; transform: translateZ(20px); }
+        .bento-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; transform: translateZ(10px); }
+
+        /* Адаптив для телефонов */
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-card { grid-column: span 1 !important; grid-row: span 1 !important; }
+        }
     </style>
 </head>
 <body>
+
     <div class="sidebar">
-        <div class="logo">Architect Tracker</div>
+        <div class="logo">Architect OS</div>
         <a href="index.html" class="nav-btn active">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn">2. Планы</a>
@@ -33,54 +94,58 @@
     </div>
 
     <div class="main-content">
-        <div class="header">
+        <div class="header" style="margin-bottom: 50px; text-align: center;">
             <h1>Твой цифровой штаб</h1>
-            <p>Здесь ты не просто ставишь галочки — ты проектируешь свою жизнь. Выбери раздел и начни действовать.</p>
+            <p style="margin: 0 auto;">Проектируй свою жизнь. Управляй активами. Достигай целей.</p>
         </div>
 
-        <div class="grid">
-            <a href="goals.html" class="grid-card">
+        <div class="bento-grid">
+            <a href="goals.html" class="bento-card">
                 <div class="card-icon">🎯</div>
-                <h2>1. Цели</h2>
-                <p>Финансовые цели и глобальные мечты с прогресс-баром.</p>
+                <h2>Цели</h2>
+                <p>Финансовые трекеры, прогресс-бары и визуализация твоих главных желаний.</p>
             </a>
-            <a href="plans.html" class="grid-card">
+            <a href="plans.html" class="bento-card">
                 <div class="card-icon">📋</div>
-                <h2>2. Планы</h2>
-                <p>Списки задач на день, месяц и год с галочками.</p>
+                <h2>Планы</h2>
+                <p>Задачи на день, месяц и год. Дисциплина в каждом квадратике.</p>
             </a>
-            <a href="wishes.html" class="grid-card">
+            <a href="wishes.html" class="bento-card">
                 <div class="card-icon">💎</div>
-                <h2>3. Хотелки</h2>
-                <p>Материальные желания и шаги для их достижения.</p>
+                <h2>Хотелки</h2>
+                <p>Список материальных благ.</p>
             </a>
-            <a href="timer.html" class="grid-card">
+            <a href="timer.html" class="bento-card">
                 <div class="card-icon">⏳</div>
-                <h2>4. Таймер</h2>
-                <p>Обратный отсчет до важных дат и дедлайнов.</p>
+                <h2>Таймер</h2>
+                <p>Отсчет до дедлайна.</p>
             </a>
-            <a href="notes.html" class="grid-card">
+            <a href="notes.html" class="bento-card">
                 <div class="card-icon">📝</div>
-                <h2>5. Заметки</h2>
-                <p>Советы, мотивация и идеи для реализации.</p>
+                <h2>Заметки</h2>
+                <p>Твои мысли, структурированные по категориям. Ищи нужное мгновенно.</p>
             </a>
-            <a href="calendar.html" class="grid-card">
+            <a href="calendar.html" class="bento-card">
                 <div class="card-icon">📅</div>
-                <h2>6. Календарь</h2>
-                <p>Отмечай дни провалов и успехов.</p>
+                <h2>Календарь</h2>
+                <p>Успехи и провалы.</p>
             </a>
-            <a href="habits.html" class="grid-card">
+            <a href="habits.html" class="bento-card">
                 <div class="card-icon">🔥</div>
-                <h2>7. Привычки</h2>
-                <p>Трекер дисциплины с цветовыми метками.</p>
+                <h2>Привычки</h2>
+                <p>Трекер дисциплины.</p>
             </a>
-            <a href="ideas.html" class="grid-card">
-                <div class="card-icon">💡</div>
-                <h2>8. Идеи</h2>
-                <p>Копилка гениальных мыслей для будущего.</p>
+            <a href="ideas.html" class="bento-card">
+                <div>
+                    <div class="card-icon">💡</div>
+                    <h2>Копилка идей</h2>
+                    <p>Гениальные мысли, которые станут твоими будущими проектами.</p>
+                </div>
+                <div style="font-size: 40px; opacity: 0.2;">→</div>
             </a>
         </div>
     </div>
+
     <script src="effects.js"></script>
 </body>
 </html>
