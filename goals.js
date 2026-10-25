@@ -1,8 +1,7 @@
-let goalToDelete = null;
+let currentFilter = 'Все';
+let deleteTargetId = null;
 
-window.onload = function() {
-    renderGoals();
-}
+window.onload = function() { renderGoals(); }
 
 function toggleForm() {
     const form = document.getElementById('goal-form');
@@ -14,63 +13,37 @@ function saveGoal() {
     const amount = parseInt(document.getElementById('goal-amount').value) || 0;
     const image = document.getElementById('goal-image').value;
 
-    if (!name) {
-        alert("Введите название цели!"); // Это можно оставить, если поле пустое
-        return;
-    }
+    if (!name) return alert("Введите название!");
 
     let goals = JSON.parse(localStorage.getItem('architect_goals') || "[]");
-    goals.push({
-        id: Date.now(),
-        name: name,
-        targetAmount: amount,
-        currentAmount: 0,
-        image: image || null
-    });
-
+    goals.push({ id: Date.now(), name: name, targetAmount: amount, currentAmount: 0, image: image || null });
     localStorage.setItem('architect_goals', JSON.stringify(goals));
     
     document.getElementById('goal-name').value = '';
     document.getElementById('goal-amount').value = '';
     document.getElementById('goal-image').value = '';
     toggleForm();
-    
     renderGoals();
 }
 
-// Открытие модального окна удаления
-function deleteGoal(id) {
-    goalToDelete = id;
-    document.getElementById('delete-modal').style.display = 'flex';
-}
-
-// Закрытие модального окна
-function closeModal() {
-    goalToDelete = null;
-    document.getElementById('delete-modal').style.display = 'none';
-}
-
-// Подтверждение удаления
+function deleteGoal(id) { deleteTargetId = id; document.getElementById('delete-modal').style.display = 'flex'; }
+function closeModal() { deleteTargetId = null; document.getElementById('delete-modal').style.display = 'none'; }
 function confirmDelete() {
-    if (goalToDelete) {
+    if (deleteTargetId) {
         let goals = JSON.parse(localStorage.getItem('architect_goals') || "[]");
-        goals = goals.filter(g => g.id !== goalToDelete);
+        goals = goals.filter(g => g.id !== deleteTargetId);
         localStorage.setItem('architect_goals', JSON.stringify(goals));
-        closeModal();
-        renderGoals();
+        closeModal(); renderGoals();
     }
 }
 
 function addMoney(id) {
-    const amountStr = prompt("Сколько добавить к этой цели?");
-    const amount = parseInt(amountStr);
+    const amount = parseInt(prompt("Сколько добавить?"));
     if (!amount || amount <= 0) return;
-
     let goals = JSON.parse(localStorage.getItem('architect_goals') || "[]");
-    const goalIndex = goals.findIndex(g => g.id === id);
-    
-    if (goalIndex !== -1) {
-        goals[goalIndex].currentAmount += amount;
+    const idx = goals.findIndex(g => g.id === id);
+    if (idx !== -1) {
+        goals[idx].currentAmount += amount;
         localStorage.setItem('architect_goals', JSON.stringify(goals));
         renderGoals();
     }
@@ -79,47 +52,30 @@ function addMoney(id) {
 function renderGoals() {
     const container = document.getElementById('goals-list');
     container.innerHTML = '';
-    
     let goals = JSON.parse(localStorage.getItem('architect_goals') || "[]");
 
     if (goals.length === 0) {
-        container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">У тебя пока нет целей. Самое время добавить первую!</p>';
+        container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">Целей нет.</p>';
         return;
     }
 
     goals.forEach(goal => {
-        let progressPercent = 0;
-        let remaining = 0;
-
-        if (goal.targetAmount > 0) {
-            progressPercent = (goal.currentAmount / goal.targetAmount) * 100;
-            if (progressPercent > 100) progressPercent = 100;
-            remaining = goal.targetAmount - goal.currentAmount;
-        }
-
-        let cardHTML = `
-            <div class="card" style="display: flex; gap: 20px; align-items: center; position: relative;">
-                ${goal.image ? `<img src="${goal.image}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'">` : '<div style="width: 100px; height: 100px; background: #333; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 30px;">🎯</div>'}
-                
-                <div style="flex-grow: 1;">
-                    <h2 style="margin-bottom: 10px; font-size: 20px; color: #fff;">${goal.name}</h2>
-                    ${goal.targetAmount > 0 ? `
-                        <div class="progress-container" style="height: 15px; background: #333; border-radius: 10px; overflow: hidden; margin-bottom: 5px;">
-                            <div class="progress-bar" style="width: ${progressPercent}%; background: var(--accent-orange); height: 100%;"></div>
-                        </div>
-                        <p style="color: #ccc; font-size: 14px; margin-top: 5px;">
-                            Собрано: <strong>${goal.currentAmount.toLocaleString()} ₽</strong> из ${goal.targetAmount.toLocaleString()} ₽ 
-                            <br><span style="color: var(--text-muted);">Осталось: ${remaining > 0 ? remaining.toLocaleString() : 0} ₽</span>
-                        </p>
-                    ` : `<p style="color: var(--text-muted);">Описательная цель</p>`}
+        let percent = goal.targetAmount > 0 ? (goal.currentAmount / goal.targetAmount) * 100 : 0;
+        if (percent > 100) percent = 100;
+        
+        container.innerHTML += `
+            <div class="card goal-card">
+                ${goal.image ? `<img src="${goal.image}" class="goal-img">` : '<div class="goal-img" style="display:flex;align-items:center;justify-content:center;background:#222;font-size:30px;">🎯</div>'}
+                <div class="goal-info">
+                    <h3 style="color:#fff;">${goal.name}</h3>
+                    <p style="color:var(--text-muted); font-size:14px;">${goal.currentAmount.toLocaleString()} ₽ / ${goal.targetAmount.toLocaleString()} ₽</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: ${percent}%;"></div></div>
                 </div>
-
-                <div style="display: flex; flex-direction: column; gap: 10px; width: 150px;">
-                    ${goal.targetAmount > 0 ? `<button class="btn-primary" onclick="addMoney(${goal.id})" style="padding: 10px; font-size: 14px;">+ Пополнить</button>` : ''}
-                    <button class="btn-primary" onclick="deleteGoal(${goal.id})" style="background-color: #e74c3c; padding: 10px; font-size: 14px;">Удалить</button>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <button class="btn-primary" style="padding:10px;" onclick="addMoney(${goal.id})">+</button>
+                    <button class="btn-primary" style="padding:10px; background:#ff0055;" onclick="deleteGoal(${goal.id})">✕</button>
                 </div>
             </div>
         `;
-        container.innerHTML += cardHTML;
     });
 }
