@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Идеи | Architect Tracker</title>
+    <title>Vault | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
     <div class="sidebar">
-        <div class="logo">Architect Tracker</div>
-        <a href="index.html" class="nav-btn">Главная</a>
-        <a href="goals.html" class="nav-btn">1. Цели</a>
-        <a href="plans.html" class="nav-btn">2. Планы</a>
-        <a href="wishes.html" class="nav-btn">3. Хотелки</a>
-        <a href="timer.html" class="nav-btn">4. Таймер</a>
-        <a href="notes.html" class="nav-btn">5. Заметки</a>
-        <a href="calendar.html" class="nav-btn">6. Календарь</a>
-        <a href="habits.html" class="nav-btn">7. Привычки</a>
-        <a href="ideas.html" class="nav-btn active">8. Идеи</a>
+        <div class="logo">Architect OS</div>
+        <a href="index.html" class="nav-btn">Core</a>
+        <a href="goals.html" class="nav-btn">Wealth</a>
+        <a href="plans.html" class="nav-btn">Missions</a>
+        <a href="wishes.html" class="nav-btn">Desires</a>
+        <a href="timer.html" class="nav-btn">Countdown</a>
+        <a href="notes.html" class="nav-btn">Database</a>
+        <a href="calendar.html" class="nav-btn">Chronicle</a>
+        <a href="habits.html" class="nav-btn">Discipline</a>
+        <a href="ideas.html" class="nav-btn active">Vault</a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Копилка идей</h1></div>
-        
+        <div class="header-center"><h1>Vault (Идеи)</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новая идея</h2>
+                <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новая идея</h2>
                 <input type="text" id="idea-title" class="input-field" placeholder="Заголовок">
-                <textarea id="idea-text" class="input-field" style="height: 80px; resize: vertical;" placeholder="Опиши идею..."></textarea>
+                <textarea id="idea-text" class="input-field" style="height: 80px;" placeholder="Опиши идею..."></textarea>
                 <button class="btn-primary" onclick="addIdea()">Сохранить</button>
             </div>
             <div id="ideas-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
