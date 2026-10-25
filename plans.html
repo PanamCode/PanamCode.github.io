@@ -7,13 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="watermark">🏛️</div>
-
     <div class="sidebar">
-        <div class="logo">
-            <span>Architect</span> <span style="color: var(--accent-orange);">Tracker</span>
-        </div>
+        <div class="logo">Architect Tracker</div>
         <a href="index.html" class="nav-btn">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn active">2. Планы</a>
@@ -26,16 +21,12 @@
     </div>
 
     <div class="main-content">
-        <div class="header-center">
-            <h1>Мои планы</h1>
-        </div>
+        <div class="header-center"><h1>Мои планы</h1></div>
         
         <div style="max-width: 800px; margin: 0 auto;">
-            <!-- Форма добавления -->
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новый план</h2>
+                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новый план</h2>
                 <input type="text" id="plan-text" class="input-field" placeholder="Что нужно сделать?">
-                
                 <div style="display: flex; gap: 15px;">
                     <select id="plan-type" class="input-field" style="flex: 1;">
                         <option value="День">На день</option>
@@ -47,31 +38,27 @@
                 </div>
             </div>
 
-            <!-- Фильтры -->
             <div style="display: flex; gap: 10px; margin-bottom: 20px;">
                 <button class="btn-primary" style="background: #333;" onclick="filterPlans('Все')">Все</button>
                 <button class="btn-primary" style="background: #333;" onclick="filterPlans('День')">День</button>
                 <button class="btn-primary" style="background: #333;" onclick="filterPlans('Месяц')">Месяц</button>
                 <button class="btn-primary" style="background: #333;" onclick="filterPlans('Год')">Год</button>
             </div>
-
-            <!-- Список планов -->
             <div id="plans-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
         </div>
     </div>
 
-    <!-- ВОТ ЭТОГО БЛОКА У ТЕБЯ НЕ ХВАТАЛО -->
     <div id="custom-delete-modal" class="custom-modal">
         <div class="custom-modal-content">
             <h3>Удалить план?</h3>
-            <p>Ты уверен, что хочешь удалить этот план? Это действие нельзя отменить.</p>
+            <p>Ты уверен? Это действие нельзя отменить.</p>
             <div class="custom-modal-buttons">
                 <button class="custom-modal-btn btn-confirm-delete" onclick="confirmCustomDelete()">Да, удалить</button>
                 <button class="custom-modal-btn btn-cancel-delete" onclick="closeCustomModal()">Отмена</button>
             </div>
         </div>
     </div>
-
     <script src="plans.js"></script>
+    <script src="effects.js"></script>
 </body>
 </html>
