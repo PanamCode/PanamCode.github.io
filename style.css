@@ -1,197 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+
 :root {
-    --bg-color: #0d0d12; /* Глубокий, почти черный с легким фиолетовым оттенком */
-    --card-bg: rgba(22, 22, 30, 0.7); /* Полупрозрачный графит */
-    --text-main: #f0f0f5;
-    --text-muted: #8a8a9d;
-    
-    /* Новая цветовая палитра: от бирюзы к фиолету */
-    --accent-1: #00d2ff; 
-    --accent-2: #8a2be2; 
-    --accent-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-    
-    --border-color: rgba(255, 255, 255, 0.06);
-    --btn-bg: rgba(255, 255, 255, 0.05);
-    
-    --shadow-glow: 0 0 30px rgba(0, 210, 255, 0.15);
-    --shadow-heavy: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --bg-deep: #030305;
+    --panel-bg: rgba(15, 15, 20, 0.65);
+    --text-main: #ffffff;
+    --text-muted: #888899;
+    --neon-blue: #00f0ff;
+    --neon-purple: #9d00ff;
+    --neon-pink: #ff00c8;
+    --gradient-main: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+    --border-glass: rgba(255, 255, 255, 0.08);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Space Grotesk', sans-serif; }
 
 body { 
-    background-color: var(--bg-color); 
+    background-color: var(--bg-deep); 
     color: var(--text-main); 
     display: flex; 
     min-height: 100vh; 
     overflow-x: hidden;
     position: relative;
+    /* Сложный многослойный фон */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(157, 0, 255, 0.08), transparent 25%);
 }
 
-/* --- ГЛОБАЛЬНЫЙ ФОН (Живой градиент) --- */
-body::before {
-    content: '';
-    position: fixed;
-    top: -50%; left: -50%; width: 200%; height: 200%;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.08) 0%, transparent 40%);
-    animation: bg-float 20s infinite alternate ease-in-out;
-    z-index: -1;
-    pointer-events: none;
-}
-@keyframes bg-float {
-    0% { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.1) translate(2%, 2%); }
-}
-
-/* --- БОКОВОЕ МЕНЮ (Стекло) --- */
+/* --- БОКОВОЕ МЕНЮ (Строгое, киберпанк) --- */
 .sidebar {
-    width: 260px; 
-    background: rgba(13, 13, 18, 0.6); 
-    backdrop-filter: blur(20px);
-    border-right: 1px solid var(--border-color);
-    padding: 30px 20px; 
+    width: 280px; 
+    background: rgba(5, 5, 8, 0.8); 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-right: 1px solid var(--border-glass);
+    padding: 40px 20px; 
     position: fixed; 
     top: 0; left: 0; height: 100vh; 
-    overflow-y: auto; 
-    z-index: 10;
+    z-index: 100;
 }
 
-/* Логотип с градиентом */
 .logo { 
-    font-size: 20px; 
-    font-weight: 800; 
-    letter-spacing: 1px; 
-    background: var(--accent-gradient);
+    font-size: 24px; 
+    font-weight: 700; 
+    letter-spacing: 3px; 
+    text-transform: uppercase;
+    background: var(--gradient-main);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 40px; 
-    text-transform: uppercase; 
-    text-align: center; 
-    padding-bottom: 20px; 
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 50px; 
+    text-align: center;
 }
 
-/* Кнопки меню */
 .nav-btn {
-    display: flex;
-    align-items: center;
-    padding: 14px 18px; 
+    display: flex; align-items: center;
+    padding: 16px 20px; 
     color: var(--text-muted); 
-    font-size: 15px; 
-    font-weight: 500;
+    font-size: 16px; 
+    font-weight: 600;
     text-decoration: none; 
     border-radius: 12px; 
-    margin-bottom: 6px; 
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    margin-bottom: 8px; 
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
 }
 
-/* Эффект наведения на кнопки меню */
-.nav-btn::before {
-    content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px;
-    background: var(--accent-gradient); opacity: 0; transition: 0.3s;
-}
 .nav-btn:hover, .nav-btn.active { 
     background: rgba(255, 255, 255, 0.03); 
-    color: var(--text-main); 
+    color: #fff; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+    transform: translateX(5px);
 }
-.nav-btn:hover::before, .nav-btn.active::before { opacity: 1; }
 
 /* --- КОНТЕНТ --- */
-.main-content { margin-left: 260px; padding: 50px; width: calc(100% - 260px); min-height: 100vh; }
-.header-center { text-align: center; margin-bottom: 40px; }
+.main-content { margin-left: 280px; padding: 60px; width: calc(100% - 280px); min-height: 100vh; }
+.header-center { text-align: center; margin-bottom: 60px; }
 .header-center h1 { 
-    font-size: 38px; 
+    font-size: 48px; 
     font-weight: 700;
-    background: var(--accent-gradient);
+    letter-spacing: -1px;
+    background: linear-gradient(to right, #fff, #888);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 10px; 
+    margin-bottom: 15px; 
 }
 
 /* --- КНОПКИ --- */
 .btn-primary {
     display: inline-flex; justify-content: center; align-items: center;
-    width: 100%; padding: 16px 24px;
-    background: var(--btn-bg); 
+    width: 100%; padding: 18px 30px;
+    background: rgba(255, 255, 255, 0.03); 
     color: #fff;
-    border: 1px solid var(--border-color); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 12px;
     cursor: pointer; font-weight: 600; font-size: 16px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    z-index: 1;
+}
+.btn-primary::after {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: var(--gradient-main); opacity: 0; transition: 0.4s;
 }
 .btn-primary:hover { 
-    background: var(--accent-gradient); 
     border-color: transparent;
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 0 30px rgba(157, 0, 255, 0.4);
     transform: translateY(-2px);
 }
+.btn-primary:hover::after { opacity: 1; }
 
 /* --- ПОЛЯ ВВОДА --- */
 .input-field {
-    width: 100%; padding: 16px; margin-top: 5px; margin-bottom: 15px;
-    background: rgba(0,0,0,0.2); 
-    border: 1px solid var(--border-color); 
-    color: #fff; 
-    border-radius: 12px; 
-    font-size: 15px;
+    width: 100%; padding: 18px; margin-top: 5px; margin-bottom: 20px;
+    background: rgba(0,0,0,0.4); 
+    border: 1px solid rgba(255,255,255,0.1); 
+    color: var(--neon-blue); 
+    font-family: 'Space Grotesk', sans-serif;
+    border-radius: 12px; font-size: 16px;
     transition: all 0.3s ease;
 }
 .input-field:focus { 
     outline: none; 
-    border-color: var(--accent-1); 
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.1); 
-    background: rgba(0,0,0,0.4);
+    border-color: var(--neon-blue); 
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); 
 }
 
-/* --- КАРТОЧКИ (Стекло + 3D) --- */
+/* --- КАРТОЧКИ (3D Стекло) --- */
 .card { 
-    background: var(--card-bg); 
+    background: var(--panel-bg); 
     backdrop-filter: blur(20px); 
-    border: 1px solid var(--border-color); 
-    border-radius: 24px; 
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass); 
+    border-radius: 20px; 
     padding: 30px;
     margin-bottom: 24px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     position: relative;
-    overflow: hidden;
-    animation: slideUpFade 0.6s ease backwards;
     transform-style: preserve-3d;
 }
 .card:hover { 
     border-color: rgba(255, 255, 255, 0.15); 
-    box-shadow: var(--shadow-heavy), var(--shadow-glow); 
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.1); 
 }
-.card h2, .card h3 { transform: translateZ(20px); }
-.card p, .card span { transform: translateZ(10px); }
-
-@keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
 /* Модальное окно */
 .custom-modal {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.9); z-index: 9999; justify-content: center; align-items: center;
+    backdrop-filter: blur(15px);
 }
 .custom-modal-content {
-    background: #16161e; padding: 35px; border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.1); max-width: 400px; width: 90%; text-align: center;
-    box-shadow: var(--shadow-heavy);
-    animation: slideUpFade 0.4s ease;
+    background: #0a0a0f; padding: 40px; border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.1); max-width: 450px; width: 90%; text-align: center;
+    box-shadow: 0 0 50px rgba(157, 0, 255, 0.2);
 }
-.custom-modal h3 { font-size: 22px; margin-bottom: 15px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.custom-modal p { color: var(--text-muted); margin-bottom: 25px; }
-.custom-modal-buttons { display: flex; gap: 12px; }
+.custom-modal h3 { font-size: 24px; margin-bottom: 15px; color: var(--neon-pink); }
+.custom-modal p { color: var(--text-muted); margin-bottom: 30px; font-size: 16px; }
+.custom-modal-buttons { display: flex; gap: 15px; }
 .custom-modal-btn {
-    flex: 1; padding: 14px; border-radius: 12px; cursor: pointer; font-weight: 600;
-    border: none; font-size: 15px; transition: 0.3s;
+    flex: 1; padding: 16px; border-radius: 12px; cursor: pointer; font-weight: 600; font-family: 'Space Grotesk', sans-serif;
+    border: none; font-size: 16px; transition: 0.3s;
 }
-.btn-confirm-delete { background: #ff4d4d; color: white; }
-.btn-confirm-delete:hover { background: #e60000; }
-.btn-cancel-delete { background: var(--btn-bg); color: white; border: 1px solid var(--border-color); }
+.btn-confirm-delete { background: #ff0055; color: white; }
+.btn-confirm-delete:hover { background: #ff3377; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+.btn-cancel-delete { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
 .btn-cancel-delete:hover { background: rgba(255,255,255,0.1); }
