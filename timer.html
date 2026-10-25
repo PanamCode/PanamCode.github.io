@@ -2,15 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-    
     <div class="top-bar"><div class="logo">Architect OS</div></div>
-
     <div class="dock">
         <a href="index.html" class="dock-item"><div class="dock-icon">🌌</div><div class="dock-label">Core</div></a>
         <a href="goals.html" class="dock-item"><div class="dock-icon">💎</div><div class="dock-label">Wealth</div></a>
@@ -22,17 +19,13 @@
         <a href="habits.html" class="dock-item"><div class="dock-icon">🔥</div><div class="dock-label">Discipline</div></a>
         <a href="ideas.html" class="dock-item"><div class="dock-icon">💡</div><div class="dock-label">Vault</div></a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Countdown (Таймер)</h1></div>
+        <div class="header-center"><h1>Countdown</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
-            <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новый таймер</h2>
+            <div class="card" style="text-align: center;">
                 <input type="text" id="timer-title" class="input-field" placeholder="К чему таймер?">
-                <div style="display: flex; gap: 15px;">
-                    <input type="date" id="timer-date" class="input-field" style="flex: 1;">
-                    <button class="btn-primary" onclick="addTimer()" style="flex: 1;">Запустить</button>
-                </div>
+                <input type="date" id="timer-date" class="input-field">
+                <button class="btn-primary" onclick="addTimer()">Запустить</button>
             </div>
             <div id="timers-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
         </div>
