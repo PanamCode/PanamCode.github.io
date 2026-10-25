@@ -6,46 +6,51 @@
     <title>Architect Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { background: radial-gradient(circle at top, #14171c 0%, #0a0a0a 100%); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; min-height: 100vh; overflow-x: hidden; }
+        .header h1 { font-size: 48px; font-weight: 900; margin: 0 0 15px 0; background: linear-gradient(90deg, #fff, #8bbfff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: #8b949e; font-size: 18px; max-width: 600px; line-height: 1.6; }
         
-        /* Боковое меню */
-        .sidebar { width: 260px; background: rgba(20, 23, 28, 0.8); backdrop-filter: blur(10px); border-right: 1px solid rgba(255, 255, 255, 0.05); padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; perspective: 1000px; }
         
-        /* Логотип */
-        .logo { font-size: 16px; font-weight: 800; letter-spacing: 1px; background: linear-gradient(90deg, #fff, var(--accent-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 40px; text-transform: uppercase; text-align: center; border-bottom: 2px solid var(--accent-color); padding-bottom: 15px; white-space: nowrap; overflow: hidden; }
+        .grid-card { 
+            background: rgba(20, 24, 33, 0.6); 
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.08); 
+            padding: 30px; 
+            border-radius: 20px; 
+            text-decoration: none; 
+            color: #fff; 
+            transition: border-color 0.3s, box-shadow 0.3s;
+            position: relative; 
+            overflow: hidden; 
+            transform-style: preserve-3d;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .grid-card::before { 
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(46,166,255,0.1), transparent); 
+            transform: skewX(-20deg); transition: 0.5s; 
+        }
+        .grid-card:hover::before { left: 150%; }
+        .grid-card:hover { 
+            border-color: rgba(46, 166, 255, 0.5); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(46, 166, 255, 0.2); 
+        }
         
-        /* Кнопки меню */
-        .nav-btn { display: flex; align-items: center; padding: 14px 20px; margin-bottom: 8px; color: #888; text-decoration: none; border-radius: 12px; font-size: 15px; font-weight: 500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; }
-        .nav-btn:hover, .nav-btn.active { background: rgba(46, 166, 255, 0.1); color: var(--accent-color); border-color: rgba(46, 166, 255, 0.2); transform: translateX(5px); }
-        
-        /* Контент */
-        .main-content { margin-left: 260px; padding: 50px; width: calc(100% - 260px); position: relative; z-index: 10; }
-        .header { margin-bottom: 50px; animation: fadeInDown 0.8s ease; }
-        .header h1 { font-size: 48px; font-weight: 800; margin: 0 0 15px 0; background: linear-gradient(90deg, #fff, #8bbfff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header p { color: #888; font-size: 18px; max-width: 600px; line-height: 1.6; }
-        
-        /* Сетка и карточки с переливанием */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: linear-gradient(145deg, rgba(30, 34, 42, 0.8), rgba(20, 23, 28, 0.8)); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; text-decoration: none; color: #fff; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; animation: fadeInUp 0.8s ease backwards; }
-        
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(46, 166, 255, 0.1), transparent); transform: translateX(-100%); transition: 0.5s; pointer-events: none; }
-        .card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(46, 166, 255, 0.4); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(46, 166, 255, 0.1); }
-        .card:hover::before { transform: translateX(100%); }
-        
-        .card-icon { font-size: 32px; margin-bottom: 20px; display: inline-block; background: rgba(46, 166, 255, 0.1); padding: 15px; border-radius: 15px; color: var(--accent-color); }
-        .card h2 { font-size: 22px; margin: 0 0 10px 0; font-weight: 700; }
-        .card p { color: #888; font-size: 15px; line-height: 1.5; margin: 0; }
-        
-        /* Анимации */
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .card-icon { 
+            font-size: 32px; margin-bottom: 20px; display: inline-flex; align-items: center; justify-content: center;
+            width: 60px; height: 60px; background: rgba(46, 166, 255, 0.1); padding: 15px; border-radius: 15px; color: var(--accent-color); 
+            box-shadow: 0 0 15px rgba(46, 166, 255, 0.2);
+            transform: translateZ(30px); /* 3D-глубина иконки */
+        }
+        .grid-card h2 { font-size: 22px; margin: 0 0 10px 0; font-weight: 700; transform: translateZ(20px); }
+        .grid-card p { color: #8b949e; font-size: 15px; line-height: 1.5; margin: 0; transform: translateZ(10px); }
     </style>
 </head>
 <body>
 
     <div class="sidebar">
         <div class="logo">
-            Architect <span style="color: var(--accent-color);">Tracker</span>
+            Architect Tracker
         </div>
         <a href="index.html" class="nav-btn active">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
@@ -64,49 +69,79 @@
             <p>Здесь ты не просто ставишь галочки — ты проектируешь свою жизнь. Выбери раздел и начни действовать.</p>
         </div>
 
-        <div class="grid">
-            <a href="goals.html" class="card">
+        <div class="grid" id="tilt-cards">
+            <a href="goals.html" class="grid-card">
                 <div class="card-icon">🎯</div>
                 <h2>1. Цели</h2>
                 <p>Финансовые цели и глобальные мечты с прогресс-баром.</p>
             </a>
-            <a href="plans.html" class="card">
+            <a href="plans.html" class="grid-card">
                 <div class="card-icon">📋</div>
                 <h2>2. Планы</h2>
                 <p>Списки задач на день, месяц и год с галочками.</p>
             </a>
-            <a href="wishes.html" class="card">
+            <a href="wishes.html" class="grid-card">
                 <div class="card-icon">💎</div>
                 <h2>3. Хотелки</h2>
                 <p>Материальные желания и шаги для их достижения.</p>
             </a>
-            <a href="timer.html" class="card">
+            <a href="timer.html" class="grid-card">
                 <div class="card-icon">⏳</div>
                 <h2>4. Таймер</h2>
                 <p>Обратный отсчет до важных дат и дедлайнов.</p>
             </a>
-            <a href="notes.html" class="card">
+            <a href="notes.html" class="grid-card">
                 <div class="card-icon">📝</div>
                 <h2>5. Заметки</h2>
                 <p>Советы, мотивация и идеи для реализации.</p>
             </a>
-            <a href="calendar.html" class="card">
+            <a href="calendar.html" class="grid-card">
                 <div class="card-icon">📅</div>
                 <h2>6. Календарь</h2>
                 <p>Отмечай дни провалов и успехов.</p>
             </a>
-            <a href="habits.html" class="card">
+            <a href="habits.html" class="grid-card">
                 <div class="card-icon">🔥</div>
                 <h2>7. Привычки</h2>
                 <p>Трекер дисциплины с цветовыми метками.</p>
             </a>
-            <a href="ideas.html" class="card">
+            <a href="ideas.html" class="grid-card">
                 <div class="card-icon">💡</div>
                 <h2>8. Идеи</h2>
                 <p>Копилка гениальных мыслей для будущего.</p>
             </a>
         </div>
     </div>
+
+    <!-- Скрипт для 3D-эффекта карточек -->
+    <script>
+        const cards = document.querySelectorAll('.grid-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+                card.style.transition = 'transform 0.5s ease';
+            });
+            
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        });
+    </script>
 
 </body>
 </html>
