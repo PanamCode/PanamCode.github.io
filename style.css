@@ -177,3 +177,64 @@ body::before {
 /* Анимации */
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- 3D-ЭФФЕКТ И АНИМАЦИИ ДЛЯ ВСЕХ КАРТОЧЕК --- */
+.card, .grid-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+    animation: slideUpFade 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) backwards;
+    will-change: transform;
+}
+
+/* Эффект появления (выезд снизу с прозрачностью) */
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Эффект при наведении (свечение и подъем) */
+.card:hover, .grid-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-glow);
+    border-color: var(--accent-color);
+}
+
+/* Внутренние элементы карточек (для глубины) */
+.card h2, .card p, .card h3, .card span, .grid-card h2, .grid-card p {
+    transform: translateZ(20px); /* Выталкиваем текст вперед */
+}
+
+/* Кнопки внутри карточек */
+.card button, .card .btn-primary, .card input {
+    transform: translateZ(10px);
+}
+
+/* Стили для списков (Планы, Заметки, Идеи) */
+#plans-list > div, #notes-list > div, #ideas-list > div, #wishes-list > div {
+    animation: slideUpFade 0.5s ease backwards;
+}
+
+/* Задержка для появления карточек друг за другом (каскад) */
+#plans-list > div:nth-child(1) { animation-delay: 0.1s; }
+#plans-list > div:nth-child(2) { animation-delay: 0.2s; }
+#plans-list > div:nth-child(3) { animation-delay: 0.3s; }
+#plans-list > div:nth-child(4) { animation-delay: 0.4s; }
+#plans-list > div:nth-child(5) { animation-delay: 0.5s; }
+
+/* Календарь (3D эффект для дней) */
+.calendar-day {
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.calendar-day:hover {
+    transform: scale(1.1) translateZ(10px);
+    box-shadow: 0 0 15px var(--accent-glow);
+    z-index: 5;
+}
+
+/* Привычки (3D эффект для квадратиков) */
+.habit-day-box {
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.habit-day-box:hover {
+    transform: scale(1.15) translateZ(10px);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
