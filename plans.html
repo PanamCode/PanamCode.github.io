@@ -2,15 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missions | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-    
     <div class="top-bar"><div class="logo">Architect OS</div></div>
-
     <div class="dock">
         <a href="index.html" class="dock-item"><div class="dock-icon">🌌</div><div class="dock-label">Core</div></a>
         <a href="goals.html" class="dock-item"><div class="dock-icon">💎</div><div class="dock-label">Wealth</div></a>
@@ -22,40 +19,18 @@
         <a href="habits.html" class="dock-item"><div class="dock-icon">🔥</div><div class="dock-label">Discipline</div></a>
         <a href="ideas.html" class="dock-item"><div class="dock-icon">💡</div><div class="dock-label">Vault</div></a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Missions (Планы)</h1></div>
+        <div class="header-center"><h1>Missions</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новая задача</h2>
-                <input type="text" id="plan-text" class="input-field" placeholder="Что нужно сделать?">
+                <input type="text" id="plan-text" class="input-field" placeholder="Новая задача...">
                 <div style="display: flex; gap: 15px;">
-                    <select id="plan-type" class="input-field" style="flex: 1;">
-                        <option value="День">На день</option>
-                        <option value="Месяц">На месяц</option>
-                        <option value="Год">На год</option>
-                    </select>
-                    <input type="date" id="plan-date" class="input-field" style="flex: 1;">
-                    <button class="btn-primary" onclick="addPlan()" style="flex: 1;">Добавить</button>
+                    <select id="plan-type" class="input-field"><option>День</option><option>Месяц</option><option>Год</option></select>
+                    <input type="date" id="plan-date" class="input-field">
+                    <button class="btn-primary" onclick="addPlan()">Добавить</button>
                 </div>
             </div>
-            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                <button class="btn-primary" onclick="filterPlans('Все')">Все</button>
-                <button class="btn-primary" onclick="filterPlans('День')">День</button>
-                <button class="btn-primary" onclick="filterPlans('Месяц')">Месяц</button>
-                <button class="btn-primary" onclick="filterPlans('Год')">Год</button>
-            </div>
-            <div id="plans-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
-        </div>
-    </div>
-
-    <div id="custom-delete-modal" class="custom-modal">
-        <div class="custom-modal-content">
-            <h3>Удалить задачу?</h3>
-            <div class="custom-modal-buttons">
-                <button class="custom-modal-btn btn-confirm-delete" onclick="confirmCustomDelete()">Да</button>
-                <button class="custom-modal-btn btn-cancel-delete" onclick="closeCustomModal()">Отмена</button>
-            </div>
+            <div class="timeline" id="plans-list"></div>
         </div>
     </div>
     <script src="plans.js"></script>
