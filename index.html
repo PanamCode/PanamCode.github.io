@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architect Dashboard</title>
+    <title>Architect OS</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .header h1 { font-size: 52px; font-weight: 800; letter-spacing: -1px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header p { color: var(--text-muted); font-size: 18px; max-width: 600px; line-height: 1.6; margin-top: 10px; }
+        .header { margin-bottom: 60px; text-align: center; }
+        .header h1 { font-size: 64px; font-weight: 700; letter-spacing: -2px; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: var(--text-muted); font-size: 20px; max-width: 600px; margin: 15px auto 0; line-height: 1.6; }
         
-        /* Bento Grid (Разные размеры карточек) */
         .bento-grid { 
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
-            grid-auto-rows: minmax(180px, auto);
-            gap: 20px; 
-            perspective: 1000px; 
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px; 
+            perspective: 1200px; 
         }
         
         .bento-card { 
-            background: var(--card-bg); 
+            background: var(--panel-bg); 
             backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color); 
-            padding: 30px; 
+            border: 1px solid var(--border-glass); 
+            padding: 35px; 
             border-radius: 24px; 
             text-decoration: none; 
             color: #fff; 
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative; 
             overflow: hidden; 
             display: flex;
@@ -35,8 +35,8 @@
             transform-style: preserve-3d;
         }
 
-        /* Размеры карточек */
-        .bento-card:nth-child(1) { grid-column: span 2; grid-row: span 2; justify-content: center; }
+        /* Асимметричная сетка (Bento) */
+        .bento-card:nth-child(1) { grid-column: span 2; grid-row: span 2; justify-content: center; background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(157,0,255,0.05)); }
         .bento-card:nth-child(2) { grid-column: span 2; }
         .bento-card:nth-child(3) { grid-column: span 1; }
         .bento-card:nth-child(4) { grid-column: span 1; }
@@ -45,36 +45,31 @@
         .bento-card:nth-child(7) { grid-column: span 1; }
         .bento-card:nth-child(8) { grid-column: span 4; flex-direction: row; align-items: center; justify-content: space-between; }
 
-        /* Градиентная обводка при наведении */
         .bento-card::before { 
             content: ''; position: absolute; inset: 0; border-radius: 24px; padding: 2px; 
-            background: var(--accent-gradient); 
+            background: var(--gradient-main); 
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); 
             -webkit-mask-composite: xor; mask-composite: exclude; 
             opacity: 0; transition: 0.4s; 
         }
         .bento-card:hover::before { opacity: 1; }
         .bento-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: var(--shadow-heavy), var(--shadow-glow); 
+            transform: translateY(-8px) scale(1.01); 
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.15); 
         }
         
         .card-icon { 
-            font-size: 40px; margin-bottom: 20px; 
-            width: 70px; height: 70px; 
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.03); 
-            border-radius: 20px; 
-            border: 1px solid var(--border-color);
-            transform: translateZ(30px); 
+            font-size: 48px; margin-bottom: 25px; 
+            transform: translateZ(40px); 
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4));
         }
-        .bento-card h2 { font-size: 24px; margin-bottom: 8px; font-weight: 700; transform: translateZ(20px); }
-        .bento-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; transform: translateZ(10px); }
+        .bento-card h2 { font-size: 28px; margin-bottom: 10px; font-weight: 700; transform: translateZ(30px); }
+        .bento-card p { color: var(--text-muted); font-size: 16px; line-height: 1.5; transform: translateZ(20px); }
 
-        /* Адаптив для телефонов */
         @media (max-width: 900px) {
             .bento-grid { grid-template-columns: 1fr; }
             .bento-card { grid-column: span 1 !important; grid-row: span 1 !important; }
+            .header h1 { font-size: 42px; }
         }
     </style>
 </head>
@@ -94,9 +89,9 @@
     </div>
 
     <div class="main-content">
-        <div class="header" style="margin-bottom: 50px; text-align: center;">
+        <div class="header">
             <h1>Твой цифровой штаб</h1>
-            <p style="margin: 0 auto;">Проектируй свою жизнь. Управляй активами. Достигай целей.</p>
+            <p>Полный контроль над активами, целями и дисциплиной. Только ты и твой путь к 52 миллионам.</p>
         </div>
 
         <div class="bento-grid">
@@ -141,11 +136,10 @@
                     <h2>Копилка идей</h2>
                     <p>Гениальные мысли, которые станут твоими будущими проектами.</p>
                 </div>
-                <div style="font-size: 40px; opacity: 0.2;">→</div>
+                <div style="font-size: 50px; opacity: 0.1; font-weight: bold;">→</div>
             </a>
         </div>
     </div>
-
     <script src="effects.js"></script>
 </body>
 </html>
