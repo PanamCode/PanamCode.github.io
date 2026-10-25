@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Находим все карточки на странице
-    const cards = document.querySelectorAll('.card, .grid-card');
+    // 3D-эффект для всех карточек
+    const cards = document.querySelectorAll('.bento-card, .card, .grid-card');
 
     cards.forEach(card => {
         card.addEventListener('mousemove', e => {
@@ -11,23 +11,31 @@ document.addEventListener("DOMContentLoaded", function() {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            // Вычисляем угол наклона (чем ближе к краю, тем сильнее наклон)
-            const rotateX = (y - centerY) / 15;
-            const rotateY = (centerX - x) / 15;
+            // Наклон (чем ближе к центру, тем меньше, чем ближе к краю — тем сильнее)
+            const rotateX = ((y - centerY) / centerY) * -10; // Максимум 10 градусов
+            const rotateY = ((x - centerX) / centerX) * 10;
             
-            // Применяем 3D-трансформацию
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         });
         
         card.addEventListener('mouseleave', () => {
-            // Возвращаем в исходное положение при уходе мыши
             card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+            card.style.transition = 'transform 0.5s ease';
+        });
+        
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'none';
         });
     });
 
-    // Добавляем свечение за курсором на фон
+    // Свечение за курсором на фоне
     const glow = document.createElement('div');
-    glow.style.cssText = 'position:fixed; width:400px; height:400px; background:radial-gradient(circle, rgba(46,166,255,0.1) 0%, transparent 70%); border-radius:50%; pointer-events:none; z-index:-1; transform:translate(-50%, -50%); transition: opacity 0.3s;';
+    glow.style.cssText = `
+        position: fixed; width: 600px; height: 600px; 
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, transparent 60%); 
+        border-radius: 50%; pointer-events: none; z-index: 0; 
+        transform: translate(-50%, -50%); transition: opacity 0.5s;
+    `;
     document.body.appendChild(glow);
 
     document.addEventListener('mousemove', e => {
