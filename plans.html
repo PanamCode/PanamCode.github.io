@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Планы | Architect Tracker</title>
+    <title>Missions | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
     <div class="sidebar">
-        <div class="logo">Architect Tracker</div>
-        <a href="index.html" class="nav-btn">Главная</a>
-        <a href="goals.html" class="nav-btn">1. Цели</a>
-        <a href="plans.html" class="nav-btn active">2. Планы</a>
-        <a href="wishes.html" class="nav-btn">3. Хотелки</a>
-        <a href="timer.html" class="nav-btn">4. Таймер</a>
-        <a href="notes.html" class="nav-btn">5. Заметки</a>
-        <a href="calendar.html" class="nav-btn">6. Календарь</a>
-        <a href="habits.html" class="nav-btn">7. Привычки</a>
-        <a href="ideas.html" class="nav-btn">8. Идеи</a>
+        <div class="logo">Architect OS</div>
+        <a href="index.html" class="nav-btn">Core</a>
+        <a href="goals.html" class="nav-btn">Wealth</a>
+        <a href="plans.html" class="nav-btn active">Missions</a>
+        <a href="wishes.html" class="nav-btn">Desires</a>
+        <a href="timer.html" class="nav-btn">Countdown</a>
+        <a href="notes.html" class="nav-btn">Database</a>
+        <a href="calendar.html" class="nav-btn">Chronicle</a>
+        <a href="habits.html" class="nav-btn">Discipline</a>
+        <a href="ideas.html" class="nav-btn">Vault</a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Мои планы</h1></div>
-        
+        <div class="header-center"><h1>Missions (Планы)</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новый план</h2>
+                <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новая задача</h2>
                 <input type="text" id="plan-text" class="input-field" placeholder="Что нужно сделать?">
                 <div style="display: flex; gap: 15px;">
                     <select id="plan-type" class="input-field" style="flex: 1;">
@@ -37,23 +36,20 @@
                     <button class="btn-primary" onclick="addPlan()" style="flex: 1;">Добавить</button>
                 </div>
             </div>
-
             <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                <button class="btn-primary" style="background: #333;" onclick="filterPlans('Все')">Все</button>
-                <button class="btn-primary" style="background: #333;" onclick="filterPlans('День')">День</button>
-                <button class="btn-primary" style="background: #333;" onclick="filterPlans('Месяц')">Месяц</button>
-                <button class="btn-primary" style="background: #333;" onclick="filterPlans('Год')">Год</button>
+                <button class="btn-primary" onclick="filterPlans('Все')">Все</button>
+                <button class="btn-primary" onclick="filterPlans('День')">День</button>
+                <button class="btn-primary" onclick="filterPlans('Месяц')">Месяц</button>
+                <button class="btn-primary" onclick="filterPlans('Год')">Год</button>
             </div>
             <div id="plans-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
         </div>
     </div>
-
     <div id="custom-delete-modal" class="custom-modal">
         <div class="custom-modal-content">
-            <h3>Удалить план?</h3>
-            <p>Ты уверен? Это действие нельзя отменить.</p>
+            <h3>Удалить задачу?</h3>
             <div class="custom-modal-buttons">
-                <button class="custom-modal-btn btn-confirm-delete" onclick="confirmCustomDelete()">Да, удалить</button>
+                <button class="custom-modal-btn btn-confirm-delete" onclick="confirmCustomDelete()">Да</button>
                 <button class="custom-modal-btn btn-cancel-delete" onclick="closeCustomModal()">Отмена</button>
             </div>
         </div>
