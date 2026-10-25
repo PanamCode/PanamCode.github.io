@@ -1,171 +1,132 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Inter:wght@400;600&display=swap');
 
 :root {
-    --bg-deep: #030305;
-    --panel-bg: rgba(15, 15, 20, 0.65);
+    --bg-base: #020204;
+    --panel-bg: rgba(18, 18, 24, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    
     --text-main: #ffffff;
-    --text-muted: #888899;
-    --neon-blue: #00f0ff;
-    --neon-purple: #9d00ff;
-    --neon-pink: #ff00c8;
-    --gradient-main: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
-    --border-glass: rgba(255, 255, 255, 0.08);
+    --text-muted: #6e6e80;
+    
+    /* Новая агрессивная палитра: Кибер-неон */
+    --neon-cyan: #00f3ff;
+    --neon-magenta: #ff00a0;
+    --neon-violet: #7000ff;
+    
+    --gradient-core: linear-gradient(135deg, var(--neon-cyan), var(--neon-violet), var(--neon-magenta));
+    --gradient-text: linear-gradient(to right, #fff, #a0a0b0);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Space Grotesk', sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+h1, h2, h3, .logo, .nav-btn { font-family: 'Unbounded', sans-serif; }
 
 body { 
-    background-color: var(--bg-deep); 
+    background-color: var(--bg-base); 
     color: var(--text-main); 
     display: flex; 
     min-height: 100vh; 
     overflow-x: hidden;
     position: relative;
-    /* Сложный многослойный фон */
-    background-image: 
-        radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.08), transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(157, 0, 255, 0.08), transparent 25%);
 }
 
-/* --- БОКОВОЕ МЕНЮ (Строгое, киберпанк) --- */
+/* --- СЛОЖНЫЙ ФОН (Живые сферы) --- */
+.bg-orbs {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
+}
+.orb {
+    position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4;
+    animation: float 20s infinite alternate ease-in-out;
+}
+.orb-1 { width: 500px; height: 500px; background: var(--neon-violet); top: -10%; left: -10%; }
+.orb-2 { width: 400px; height: 400px; background: var(--neon-cyan); bottom: -10%; right: -5%; animation-delay: -5s; }
+.orb-3 { width: 300px; height: 300px; background: var(--neon-magenta); top: 40%; left: 40%; animation-delay: -10s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* --- БОКОВОЕ МЕНЮ (Строгое) --- */
 .sidebar {
-    width: 280px; 
-    background: rgba(5, 5, 8, 0.8); 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-right: 1px solid var(--border-glass);
+    width: 260px; 
+    background: rgba(5, 5, 8, 0.6); 
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-right: 1px solid var(--glass-border);
     padding: 40px 20px; 
-    position: fixed; 
-    top: 0; left: 0; height: 100vh; 
+    position: fixed; top: 0; left: 0; height: 100vh; 
     z-index: 100;
 }
 
 .logo { 
-    font-size: 24px; 
-    font-weight: 700; 
-    letter-spacing: 3px; 
-    text-transform: uppercase;
-    background: var(--gradient-main);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 50px; 
-    text-align: center;
+    font-size: 22px; font-weight: 700; letter-spacing: 2px;
+    background: var(--gradient-core);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 50px; text-align: center; text-transform: uppercase;
 }
 
 .nav-btn {
     display: flex; align-items: center;
-    padding: 16px 20px; 
-    color: var(--text-muted); 
-    font-size: 16px; 
-    font-weight: 600;
-    text-decoration: none; 
-    border-radius: 12px; 
-    margin-bottom: 8px; 
-    transition: all 0.4s ease;
+    padding: 16px 20px; color: var(--text-muted); 
+    font-size: 14px; font-weight: 500; text-decoration: none; 
+    border-radius: 12px; margin-bottom: 8px; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid transparent;
 }
-
 .nav-btn:hover, .nav-btn.active { 
     background: rgba(255, 255, 255, 0.03); 
-    color: #fff; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
-    transform: translateX(5px);
+    color: #fff; border: 1px solid var(--glass-border);
+    box-shadow: 0 0 20px rgba(112, 0, 255, 0.15);
+    transform: translateX(10px);
 }
 
 /* --- КОНТЕНТ --- */
-.main-content { margin-left: 280px; padding: 60px; width: calc(100% - 280px); min-height: 100vh; }
+.main-content { margin-left: 260px; padding: 60px; width: calc(100% - 260px); min-height: 100vh; position: relative; z-index: 5; }
 .header-center { text-align: center; margin-bottom: 60px; }
-.header-center h1 { 
-    font-size: 48px; 
-    font-weight: 700;
-    letter-spacing: -1px;
-    background: linear-gradient(to right, #fff, #888);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 15px; 
-}
+.header-center h1 { font-size: 52px; font-weight: 700; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-/* --- КНОПКИ --- */
+/* --- КНОПКИ (Жидкий металл) --- */
 .btn-primary {
     display: inline-flex; justify-content: center; align-items: center;
     width: 100%; padding: 18px 30px;
-    background: rgba(255, 255, 255, 0.03); 
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 12px;
-    cursor: pointer; font-weight: 600; font-size: 16px;
-    font-family: 'Space Grotesk', sans-serif;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+    background: rgba(255,255,255,0.03); color: #fff;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;
+    cursor: pointer; font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 500;
+    transition: all 0.4s ease; position: relative; overflow: hidden; z-index: 1;
 }
-.btn-primary::after {
+.btn-primary::before {
     content: ''; position: absolute; inset: 0; z-index: -1;
-    background: var(--gradient-main); opacity: 0; transition: 0.4s;
+    background: var(--gradient-core); opacity: 0; transition: 0.4s;
 }
-.btn-primary:hover { 
-    border-color: transparent;
-    box-shadow: 0 0 30px rgba(157, 0, 255, 0.4);
-    transform: translateY(-2px);
-}
-.btn-primary:hover::after { opacity: 1; }
+.btn-primary:hover { border-color: transparent; box-shadow: 0 0 30px rgba(0, 243, 255, 0.3); transform: translateY(-3px); }
+.btn-primary:hover::before { opacity: 1; }
 
 /* --- ПОЛЯ ВВОДА --- */
 .input-field {
     width: 100%; padding: 18px; margin-top: 5px; margin-bottom: 20px;
-    background: rgba(0,0,0,0.4); 
-    border: 1px solid rgba(255,255,255,0.1); 
-    color: var(--neon-blue); 
-    font-family: 'Space Grotesk', sans-serif;
-    border-radius: 12px; font-size: 16px;
-    transition: all 0.3s ease;
+    background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); 
+    color: var(--neon-cyan); font-family: 'Inter', sans-serif; border-radius: 12px; font-size: 15px;
+    transition: 0.3s;
 }
-.input-field:focus { 
-    outline: none; 
-    border-color: var(--neon-blue); 
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); 
-}
+.input-field:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.1); }
 
-/* --- КАРТОЧКИ (3D Стекло) --- */
+/* --- КАРТОЧКИ (3D + Жидкое стекло) --- */
 .card { 
-    background: var(--panel-bg); 
-    backdrop-filter: blur(20px); 
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-glass); 
-    border-radius: 20px; 
-    padding: 30px;
-    margin-bottom: 24px;
+    background: var(--panel-bg); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+    border: 1px solid var(--glass-border); border-radius: 24px; padding: 30px; margin-bottom: 24px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     transform-style: preserve-3d;
 }
-.card:hover { 
-    border-color: rgba(255, 255, 255, 0.15); 
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.1); 
-}
+.card:hover { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(112, 0, 255, 0.1); }
 
-/* Модальное окно */
-.custom-modal {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9); z-index: 9999; justify-content: center; align-items: center;
-    backdrop-filter: blur(15px);
-}
-.custom-modal-content {
-    background: #0a0a0f; padding: 40px; border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.1); max-width: 450px; width: 90%; text-align: center;
-    box-shadow: 0 0 50px rgba(157, 0, 255, 0.2);
-}
-.custom-modal h3 { font-size: 24px; margin-bottom: 15px; color: var(--neon-pink); }
-.custom-modal p { color: var(--text-muted); margin-bottom: 30px; font-size: 16px; }
+/* Модалка */
+.custom-modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
+.custom-modal-content { background: #0a0a0f; padding: 40px; border-radius: 24px; border: 1px solid var(--glass-border); max-width: 450px; width: 90%; text-align: center; box-shadow: 0 0 50px rgba(255, 0, 160, 0.2); }
+.custom-modal h3 { font-size: 24px; margin-bottom: 15px; color: var(--neon-magenta); }
+.custom-modal p { color: var(--text-muted); margin-bottom: 30px; }
 .custom-modal-buttons { display: flex; gap: 15px; }
-.custom-modal-btn {
-    flex: 1; padding: 16px; border-radius: 12px; cursor: pointer; font-weight: 600; font-family: 'Space Grotesk', sans-serif;
-    border: none; font-size: 16px; transition: 0.3s;
-}
-.btn-confirm-delete { background: #ff0055; color: white; }
-.btn-confirm-delete:hover { background: #ff3377; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+.custom-modal-btn { flex: 1; padding: 16px; border-radius: 12px; cursor: pointer; font-family: 'Unbounded', sans-serif; font-weight: 500; border: none; transition: 0.3s; }
+.btn-confirm-delete { background: var(--neon-magenta); color: white; }
+.btn-confirm-delete:hover { box-shadow: 0 0 20px var(--neon-magenta); }
 .btn-cancel-delete { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
-.btn-cancel-delete:hover { background: rgba(255,255,255,0.1); }
