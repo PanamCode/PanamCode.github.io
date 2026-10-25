@@ -1,22 +1,47 @@
 :root {
-    --bg-color: #0f1115; /* Очень темный, почти черный с синевой */
-    --card-bg: #1a1d24; /* Темно-серый с синим оттенком */
+    --bg-color: #05070a;
+    --card-bg: rgba(20, 24, 33, 0.6);
     --text-main: #ffffff;
     --text-muted: #8b949e;
-    --accent-color: #2ea6ff; /* Неоново-синий (как Telegram) */
-    --accent-hover: #1c88d6;
-    --border-color: #2d333b;
-    --btn-gray: #21262d;
-    --btn-border: #000000;
+    --accent-color: #2ea6ff;
+    --accent-glow: rgba(46, 166, 255, 0.4);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --btn-gray: #1a1f28;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-body { background-color: var(--bg-color); color: var(--text-main); display: flex; min-height: 100vh; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body { 
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+    display: flex; 
+    min-height: 100vh; 
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Aurora Background (Плавные переливы на фоне) */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(46,166,255,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(120, 50, 255, 0.1) 0%, transparent 40%);
+    animation: aurora 15s infinite alternate linear;
+    z-index: -1;
+    pointer-events: none;
+}
+@keyframes aurora {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.1) translate(-5%, 5%); }
+    100% { transform: scale(1) translate(5%, -5%); }
+}
 
 /* --- БОКОВОЕ МЕНЮ --- */
 .sidebar {
     width: 260px; 
-    background-color: #14171c; 
+    background: rgba(12, 15, 20, 0.8); 
+    backdrop-filter: blur(20px);
     border-right: 1px solid var(--border-color);
     padding: 20px; 
     position: fixed; 
@@ -27,14 +52,16 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     z-index: 10;
 }
 
-/* Логотип с градиентом */
+/* Логотип с сиянием */
 .logo { 
-    font-size: 16px; 
-    font-weight: 800; 
-    letter-spacing: 1px; 
-    background: linear-gradient(90deg, #fff, var(--accent-color));
+    font-size: 18px; 
+    font-weight: 900; 
+    letter-spacing: 2px; 
+    background: linear-gradient(90deg, #fff, var(--accent-color), #fff);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
     margin-bottom: 30px; 
     text-transform: uppercase; 
     text-align: center; 
@@ -42,107 +69,111 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     padding-bottom: 15px; 
     white-space: nowrap;
     overflow: hidden;
+    text-shadow: 0 0 20px var(--accent-glow);
 }
+@keyframes shine { to { background-position: 200% center; } }
 
 /* Кнопки меню */
 .nav-btn {
     display: block; 
     width: 100%; 
-    padding: 12px; 
+    padding: 14px; 
     background: none; 
     border: 1px solid transparent;
     color: var(--text-muted); 
     text-align: left; 
     font-size: 15px; 
+    font-weight: 500;
     cursor: pointer; 
-    border-radius: 8px; 
-    margin-bottom: 5px; 
+    border-radius: 10px; 
+    margin-bottom: 8px; 
     text-decoration: none; 
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-btn:hover, .nav-btn.active { 
-    background: rgba(46, 166, 255, 0.1); 
+    background: linear-gradient(90deg, rgba(46,166,255,0.15), transparent); 
     color: var(--accent-color); 
-    border-color: rgba(46, 166, 255, 0.3); 
-    transform: translateX(5px);
+    border-left: 3px solid var(--accent-color); 
+    padding-left: 18px;
+    box-shadow: 0 0 15px rgba(46,166,255,0.1);
 }
 
 /* --- КОНТЕНТ --- */
-.main-content { margin-left: 260px; padding: 40px; width: calc(100% - 260px); min-height: 100vh; }
-.header-center { text-align: center; margin-bottom: 30px; margin-top: 10px; }
+.main-content { margin-left: 260px; padding: 40px; width: calc(100% - 260px); min-height: 100vh; position: relative; z-index: 5; }
+.header-center { text-align: center; margin-bottom: 40px; margin-top: 20px; animation: fadeInDown 1s ease; }
 .header-center h1 { 
-    font-size: 36px; 
+    font-size: 40px; 
+    font-weight: 800;
     background: linear-gradient(90deg, #fff, #8bbfff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px; 
+    text-shadow: 0 0 30px rgba(139, 191, 255, 0.2);
 }
 
-/* --- КНОПКИ И ФОРМЫ --- */
+/* --- ФОРМЫ И КНОПКИ --- */
 .input-field {
     width: 100%; padding: 15px; margin-top: 5px; margin-bottom: 15px;
-    background-color: var(--btn-gray); border: 2px solid var(--border-color); color: #fff; border-radius: 8px; font-size: 16px;
+    background-color: rgba(255,255,255,0.05); 
+    border: 1px solid var(--border-color); 
+    color: #fff; 
+    border-radius: 10px; 
+    font-size: 16px;
     transition: all 0.3s ease;
 }
-.input-field:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 10px rgba(46, 166, 255, 0.2); }
+.input-field:focus { 
+    outline: none; 
+    border-color: var(--accent-color); 
+    box-shadow: 0 0 20px var(--accent-glow); 
+    background-color: rgba(46,166,255,0.05);
+}
 
 .btn-primary {
     display: block; width: 100%; padding: 15px 20px;
-    background: linear-gradient(180deg, #2a313a, #1f252d); color: #ffffff;
-    border: 2px solid var(--btn-border); border-radius: 10px;
+    background: linear-gradient(135deg, #1f252d, #151a21); 
+    color: #ffffff;
+    border: 1px solid var(--border-color); 
+    border-radius: 12px;
     cursor: pointer; font-weight: bold; font-size: 16px;
-    text-align: center; transition: all 0.3s ease; margin-bottom: 10px;
+    text-align: center; transition: all 0.4s ease; margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-.btn-primary:hover { background: linear-gradient(180deg, #323b45, #262e37); border-color: var(--accent-color); transform: translateY(-2px); }
-button:focus, input:focus, a:focus { outline: none !important; }
-
-/* Карточки с эффектом стекла и синим свечением */
-.card { 
-    background: linear-gradient(145deg, rgba(30, 34, 42, 0.8), rgba(20, 23, 28, 0.8)) !important; 
-    backdrop-filter: blur(12px); 
-    border: 1px solid rgba(255, 255, 255, 0.05) !important; 
-    border-radius: 15px !important; 
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: all 0.4s ease !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.btn-primary::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: 0.5s;
 }
-.card:hover { 
-    border-color: rgba(46, 166, 255, 0.4) !important; 
-    box-shadow: 0 8px 25px rgba(46, 166, 255, 0.1); 
+.btn-primary:hover::before { left: 100%; }
+.btn-primary:hover { 
+    background: linear-gradient(135deg, #2a313a, #1f252d); 
+    border-color: var(--accent-color); 
+    box-shadow: 0 0 25px var(--accent-glow);
     transform: translateY(-3px);
 }
 
-/* Сетка для главной */
-.grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-.grid-card { background-color: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-decoration: none; color: #fff; transition: all 0.3s ease; }
-.grid-card:hover { border-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(46, 166, 255, 0.1); }
-.grid-card h2 { color: var(--accent-color); margin-bottom: 10px; font-size: 22px; }
-.grid-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
+/* --- КАРТОЧКИ С 3D-ЭФФЕКТОМ (Стекло) --- */
+.card { 
+    background: var(--card-bg); 
+    backdrop-filter: blur(16px); 
+    border: 1px solid var(--border-color); 
+    border-radius: 20px; 
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease backwards;
+    transform-style: preserve-3d; /* Для 3D-эффекта */
+}
+.card:hover { 
+    border-color: rgba(46, 166, 255, 0.5); 
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow); 
+}
 
-/* --- МОДАЛЬНОЕ ОКНО --- */
-.custom-modal {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85); z-index: 9999; justify-content: center; align-items: center;
-    backdrop-filter: blur(5px);
-}
-.custom-modal-content {
-    background: #1a1d24; padding: 30px; border-radius: 15px;
-    border: 1px solid var(--accent-color); max-width: 400px; width: 90%; text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(46, 166, 255, 0.1);
-}
-.custom-modal h3 { color: var(--accent-color); margin-bottom: 15px; font-size: 22px; }
-.custom-modal p { color: var(--text-muted); margin-bottom: 20px; }
-.custom-modal-buttons { display: flex; gap: 10px; }
-.custom-modal-btn {
-    flex: 1; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold;
-    border: none; font-size: 16px; transition: 0.3s;
-}
-.btn-confirm-delete { background: #e74c3c; color: white; }
-.btn-confirm-delete:hover { background: #c0392b; }
-.btn-cancel-delete { background: var(--btn-gray); color: white; }
-.btn-cancel-delete:hover { background: #333; }
-
-.watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; font-size: 300px; pointer-events: none; z-index: 0; color: var(--accent-color); }
-#goals-list { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
+/* Анимации */
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
