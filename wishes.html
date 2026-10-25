@@ -7,11 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="watermark">🏛️</div>
-
     <div class="sidebar">
-        <div class="logo">Architect <span style="color: var(--accent-orange);">Tracker</span></div>
+        <div class="logo">Architect Tracker</div>
         <a href="index.html" class="nav-btn">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn">2. Планы</a>
@@ -24,15 +21,12 @@
     </div>
 
     <div class="main-content">
-        <div class="header-center">
-            <h1>Мои хотелки</h1>
-        </div>
+        <div class="header-center"><h1>Мои хотелки</h1></div>
         
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая хотелка</h2>
-                <input type="text" id="wish-title" class="input-field" placeholder="Чего хочется? (например, Новый iPhone)">
-                
+                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новая хотелка</h2>
+                <input type="text" id="wish-title" class="input-field" placeholder="Чего хочется?">
                 <div style="display: flex; gap: 15px; margin-bottom: 15px;">
                     <select id="wish-time" class="input-field" style="flex: 1;">
                         <option value="На жизнь">На жизнь</option>
@@ -40,9 +34,7 @@
                         <option value="На месяц">На месяц</option>
                     </select>
                 </div>
-                
-                <textarea id="wish-steps" class="input-field" style="height: 80px; resize: vertical;" placeholder="Что нужно сделать для этого? (каждый шаг с новой строки)"></textarea>
-                
+                <textarea id="wish-steps" class="input-field" style="height: 80px; resize: vertical;" placeholder="Шаги для достижения (каждый с новой строки)"></textarea>
                 <button class="btn-primary" onclick="addWish()">Добавить</button>
             </div>
 
@@ -52,11 +44,10 @@
                 <button class="btn-primary" style="background: #333;" onclick="filterWishes('На год')">На год</button>
                 <button class="btn-primary" style="background: #333;" onclick="filterWishes('На месяц')">На месяц</button>
             </div>
-
             <div id="wishes-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
         </div>
     </div>
-
     <script src="wishes.js"></script>
+    <script src="effects.js"></script>
 </body>
 </html>
