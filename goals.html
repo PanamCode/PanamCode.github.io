@@ -2,15 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wealth | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-    
     <div class="top-bar"><div class="logo">Architect OS</div></div>
-
     <div class="dock">
         <a href="index.html" class="dock-item"><div class="dock-icon">🌌</div><div class="dock-label">Core</div></a>
         <a href="goals.html" class="dock-item active"><div class="dock-icon">💎</div><div class="dock-label">Wealth</div></a>
@@ -22,35 +19,24 @@
         <a href="habits.html" class="dock-item"><div class="dock-icon">🔥</div><div class="dock-label">Discipline</div></a>
         <a href="ideas.html" class="dock-item"><div class="dock-icon">💡</div><div class="dock-label">Vault</div></a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Wealth (Цели)</h1></div>
+        <div class="header-center"><h1>Wealth</h1></div>
         <div style="max-width: 600px; margin: 0 auto 30px auto;">
             <button class="btn-primary" onclick="toggleForm()">+ Добавить цель</button>
         </div>
         <div id="goal-form" class="card" style="display: none; max-width: 600px; margin: 0 auto 30px auto; text-align: left;">
             <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новая цель</h2>
             <input type="text" id="goal-name" class="input-field" placeholder="Название">
-            <input type="number" id="goal-amount" class="input-field" placeholder="Сумма (₽)">
-            <input type="text" id="goal-image" class="input-field" placeholder="Ссылка на картинку">
-            <div style="display: flex; gap: 15px; margin-top: 25px;">
-                <button class="btn-primary" onclick="saveGoal()" style="flex: 1;">Сохранить</button>
-                <button class="btn-primary" onclick="toggleForm()" style="flex: 1;">Отмена</button>
+            <input type="number" id="goal-amount" class="input-field" placeholder="Сумма">
+            <input type="text" id="goal-image" class="input-field" placeholder="Ссылка на фото">
+            <div style="display: flex; gap: 15px;">
+                <button class="btn-primary" onclick="saveGoal()">Сохранить</button>
+                <button class="btn-primary" onclick="toggleForm()">Отмена</button>
             </div>
         </div>
-        <div id="goals-list"></div>
+        <div id="goals-list" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;"></div>
     </div>
-
-    <div id="delete-modal" class="custom-modal">
-        <div class="custom-modal-content">
-            <h3>Удалить цель?</h3>
-            <p>Это действие нельзя отменить.</p>
-            <div class="custom-modal-buttons">
-                <button class="custom-modal-btn btn-confirm-delete" onclick="confirmDelete()">Да</button>
-                <button class="custom-modal-btn btn-cancel-delete" onclick="closeModal()">Отмена</button>
-            </div>
-        </div>
-    </div>
+    <div id="delete-modal" class="custom-modal"><div class="custom-modal-content"><h3>Удалить?</h3><div class="custom-modal-buttons"><button class="custom-modal-btn btn-confirm-delete" onclick="confirmDelete()">Да</button><button class="custom-modal-btn btn-cancel-delete" onclick="closeModal()">Нет</button></div></div></div>
     <script src="goals.js"></script>
     <script src="effects.js"></script>
 </body>
