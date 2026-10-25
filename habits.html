@@ -7,13 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="watermark">🏛️</div>
-
     <div class="sidebar">
-        <div class="logo">
-    <span>Architect</span> <span style="color: var(--accent-orange);">Tracker</span>
-</div>
+        <div class="logo">Architect Tracker</div>
         <a href="index.html" class="nav-btn">Главная</a>
         <a href="goals.html" class="nav-btn">1. Цели</a>
         <a href="plans.html" class="nav-btn">2. Планы</a>
@@ -26,28 +21,22 @@
     </div>
 
     <div class="main-content">
-        <div class="header-center">
-            <h1>Мои привычки</h1>
-        </div>
+        <div class="header-center"><h1>Мои привычки</h1></div>
         
         <div style="max-width: 800px; margin: 0 auto;">
-            <!-- Форма добавления привычки -->
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-orange); margin-bottom: 15px;">Новая привычка</h2>
-                <input type="text" id="habit-name" class="input-field" placeholder="Название (например, Встать в 5 утра)">
-                
+                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новая привычка</h2>
+                <input type="text" id="habit-name" class="input-field" placeholder="Название">
                 <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
-                    <label style="color: var(--text-muted); font-size: 14px; white-space: nowrap;">Цвет метки:</label>
-                    <input type="color" id="habit-color" value="#ff7a00" style="width: 50px; height: 40px; border: none; background: none; cursor: pointer;">
-                    <button class="btn-primary" onclick="addHabit()" style="flex: 1;">Добавить привычку</button>
+                    <label style="color: var(--text-muted); font-size: 14px; white-space: nowrap;">Цвет:</label>
+                    <input type="color" id="habit-color" value="#2ea6ff" style="width: 50px; height: 40px; border: none; background: none; cursor: pointer;">
+                    <button class="btn-primary" onclick="addHabit()" style="flex: 1;">Добавить</button>
                 </div>
             </div>
-
-            <!-- Список привычек -->
             <div id="habits-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
         </div>
     </div>
-
     <script src="habits.js"></script>
+    <script src="effects.js"></script>
 </body>
 </html>
