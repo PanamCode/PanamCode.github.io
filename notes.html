@@ -3,42 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заметки | Architect Tracker</title>
+    <title>Database | Architect OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
     <div class="sidebar">
-        <div class="logo">Architect Tracker</div>
-        <a href="index.html" class="nav-btn">Главная</a>
-        <a href="goals.html" class="nav-btn">1. Цели</a>
-        <a href="plans.html" class="nav-btn">2. Планы</a>
-        <a href="wishes.html" class="nav-btn">3. Хотелки</a>
-        <a href="timer.html" class="nav-btn">4. Таймер</a>
-        <a href="notes.html" class="nav-btn active">5. Заметки</a>
-        <a href="calendar.html" class="nav-btn">6. Календарь</a>
-        <a href="habits.html" class="nav-btn">7. Привычки</a>
-        <a href="ideas.html" class="nav-btn">8. Идеи</a>
+        <div class="logo">Architect OS</div>
+        <a href="index.html" class="nav-btn">Core</a>
+        <a href="goals.html" class="nav-btn">Wealth</a>
+        <a href="plans.html" class="nav-btn">Missions</a>
+        <a href="wishes.html" class="nav-btn">Desires</a>
+        <a href="timer.html" class="nav-btn">Countdown</a>
+        <a href="notes.html" class="nav-btn active">Database</a>
+        <a href="calendar.html" class="nav-btn">Chronicle</a>
+        <a href="habits.html" class="nav-btn">Discipline</a>
+        <a href="ideas.html" class="nav-btn">Vault</a>
     </div>
-
     <div class="main-content">
-        <div class="header-center"><h1>Мои заметки</h1></div>
-        
+        <div class="header-center"><h1>Database (Заметки)</h1></div>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="margin-bottom: 30px; text-align: left;">
-                <h2 style="color: var(--accent-color); margin-bottom: 15px;">Новая заметка</h2>
+                <h2 style="color: var(--neon-cyan); margin-bottom: 15px;">Новая запись</h2>
                 <input type="text" id="note-title" class="input-field" placeholder="Заголовок">
-                <textarea id="note-text" class="input-field" style="height: 100px; resize: vertical;" placeholder="Текст заметки..."></textarea>
-                <div style="display: flex; gap: 15px;">
-                    <select id="note-category" class="input-field" style="flex: 1;">
-                        <option value="Советы">Советы</option>
-                        <option value="Мотивация">Мотивация</option>
-                        <option value="Идеи для реализации">Идеи для реализации</option>
-                        <option value="Разное">Разное</option>
-                    </select>
-                    <button class="btn-primary" onclick="saveNote()" style="flex: 1;">Добавить</button>
-                </div>
+                <textarea id="note-text" class="input-field" style="height: 100px;" placeholder="Текст..."></textarea>
+                <select id="note-category" class="input-field">
+                    <option value="Советы">Советы</option>
+                    <option value="Мотивация">Мотивация</option>
+                    <option value="Идеи">Идеи</option>
+                </select>
+                <button class="btn-primary" onclick="saveNote()">Сохранить</button>
             </div>
-            <input type="text" id="search-bar" class="input-field" placeholder="Поиск по заметкам..." oninput="renderNotes()">
+            <input type="text" id="search-bar" class="input-field" placeholder="Поиск..." oninput="renderNotes()">
             <div id="notes-list" style="display: flex; flex-direction: column; gap: 20px;"></div>
         </div>
     </div>
