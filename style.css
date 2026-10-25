@@ -46,53 +46,60 @@ body {
 .header-center { text-align: center; margin-bottom: 40px; }
 .header-center h1 { font-size: 52px; font-weight: 700; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-/* ОБЩИЕ КАРТОЧКИ */
-.card { background: var(--panel-bg); backdrop-filter: blur(40px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 30px; margin-bottom: 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
-
 /* КНОПКИ И ПОЛЯ */
 .btn-primary { display: inline-flex; justify-content: center; align-items: center; width: 100%; padding: 18px 30px; background: rgba(255,255,255,0.03); color: #fff; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; cursor: pointer; font-family: 'Unbounded', sans-serif; font-size: 14px; transition: 0.4s; }
 .btn-primary:hover { background: var(--gradient-core); border-color: transparent; box-shadow: 0 0 30px rgba(0, 243, 255, 0.3); }
 .input-field { width: 100%; padding: 18px; margin-top: 5px; margin-bottom: 20px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); color: var(--neon-cyan); border-radius: 12px; font-size: 15px; }
 .input-field:focus { outline: none; border-color: var(--neon-cyan); }
 
-/* --- УНИКАЛЬНЫЕ СТИЛИ ДЛЯ КАЖДОГО РАЗДЕЛА --- */
+/* КАРТОЧКИ */
+.card { background: var(--panel-bg); backdrop-filter: blur(40px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 30px; margin-bottom: 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
 
-/* 1. WEALTH (Цели) - Карточки с картинками */
+/* 1. WEALTH */
 .goal-card { display: flex; gap: 20px; align-items: center; }
 .goal-img { width: 80px; height: 80px; border-radius: 12px; object-fit: cover; border: 1px solid var(--glass-border); }
 .goal-info { flex-grow: 1; }
 .progress-bar { height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden; margin-top: 10px; }
 .progress-fill { height: 100%; background: var(--gradient-core); width: 0%; transition: width 1s ease; }
 
-/* 2. MISSIONS (Планы) - Вертикальный таймлайн */
+/* 2. MISSIONS */
 .timeline { position: relative; padding-left: 30px; }
 .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--glass-border); }
 .plan-item { position: relative; margin-bottom: 20px; }
 .plan-item::before { content: ''; position: absolute; left: -35px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); }
 
-/* 3. DESIRES (Хотелки) - Плиточная сетка */
+/* 3. DESIRES */
 .wish-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
 .wish-card { background: linear-gradient(135deg, rgba(255,0,160,0.1), transparent); border: 1px solid rgba(255,0,160,0.3); }
 
-/* 4. COUNTDOWN (Таймер) - Огромный счетчик */
+/* 4. COUNTDOWN */
 .timer-display { font-size: 80px; font-weight: 900; font-family: 'Unbounded', sans-serif; text-align: center; background: var(--gradient-core); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 20px 0; }
 
-/* 5. DATABASE (Заметки) - Карточки-стикеры */
+/* 5. DATABASE */
 .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
 .note-card { background: rgba(255, 255, 255, 0.05); border-left: 4px solid var(--neon-violet); padding: 20px; border-radius: 8px; }
 
-/* 6. CHRONICLE (Календарь) - Крупная сетка */
+/* 6. CHRONICLE */
 .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
 .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 12px; cursor: pointer; transition: 0.3s; }
 .cal-day:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); }
 
-/* 7. DISCIPLINE (Привычки) - Сетка квадратов */
+/* 7. DISCIPLINE */
 .habits-grid { display: flex; flex-direction: column; gap: 15px; }
 .habit-row { display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; }
 .habit-days { display: flex; gap: 5px; }
 .habit-box { width: 30px; height: 30px; border-radius: 6px; background: rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s; }
 .habit-box.active { background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); }
 
-/* 8. VAULT (Идеи) - Карточки с градиентной рамкой */
+/* 8. VAULT */
 .idea-card { position: relative; padding: 2px; border-radius: 20px; background: var(--glass-border); }
 .idea-inner { background: #050508; padding: 25px; border-radius: 18px; height: 100%; }
+
+/* МОДАЛКА */
+.custom-modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
+.custom-modal-content { background: #0a0a0f; padding: 40px; border-radius: 24px; border: 1px solid var(--glass-border); max-width: 450px; width: 90%; text-align: center; }
+.custom-modal h3 { font-size: 24px; margin-bottom: 15px; color: var(--neon-magenta); }
+.custom-modal-buttons { display: flex; gap: 15px; margin-top: 20px; }
+.custom-modal-btn { flex: 1; padding: 16px; border-radius: 12px; cursor: pointer; font-family: 'Unbounded', sans-serif; font-weight: 500; border: none; }
+.btn-confirm-delete { background: var(--neon-magenta); color: white; }
+.btn-cancel-delete { background: rgba(255,255,255,0.1); color: white; }
